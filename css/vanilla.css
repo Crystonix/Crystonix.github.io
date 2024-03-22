@@ -1,34 +1,66 @@
-body {
-    background-color: #1a1a1a;
-    color: #ffffff;
-    font-family: 'Helvetica', sans-serif;
+*{
     margin: 0;
     padding: 0;
+    font-family: 'Helvetica', sans-serif;
+    color: white;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+header {
+    background: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    text-align: center;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #ffffff;
+body {
+    text-align: center;display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: dimgray;
+    padding: 0;
+
 }
 
-a {
-    color: #4CAF50;
+nav{
+    background-color: grey;
+    width: 100%;
+}
+
+.nav-list{
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+li a{
+    display: block;
+    padding: 10px 20px;
+    color: white;
     text-decoration: none;
 }
 
-a:hover {
-    color: #45a049;
+footer {
+    background-color: black;
+    text-align: center;
+    padding: 10px;
 }
 
-.nav-menu{
+li a:hover{
+    background-color: #111;
+}
+
+.email-link{
+    color: deepskyblue; /* Blue color for the link */
+    text-decoration: none; /* Remove underline */
+}
+
+.content{
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    flex: 1;
 }
-
-
-/* Add additional styling as needed for your specific project */
