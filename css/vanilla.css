@@ -6,7 +6,7 @@
 }
 
 header {
-    background: black;
+    background: #3A1E2A;
     color: white;
     display: flex;
     justify-content: center;
@@ -18,13 +18,13 @@ body {
     text-align: center;display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: dimgray;
+    background-color: #7B907B;
     padding: 0;
 
 }
 
 nav{
-    background-color: grey;
+    background-color: #7A5E6A;
     width: 100%;
 }
 
@@ -44,7 +44,7 @@ li a{
 }
 
 footer {
-    background-color: black;
+    background-color: #3B1E2B;
     text-align: center;
     padding: 10px;
 }
@@ -54,7 +54,7 @@ li a:hover{
 }
 
 .email-link{
-    color: deepskyblue; /* Blue color for the link */
+    color: #A8D0D7; /* Blue color for the link */
     text-decoration: none; /* Remove underline */
 }
 
