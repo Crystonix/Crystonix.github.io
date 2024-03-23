@@ -3,6 +3,7 @@
     padding: 0;
     font-family: 'Helvetica', sans-serif;
     color: white;
+    scroll-behavior: smooth;
 }
 
 header {
@@ -15,7 +16,8 @@ header {
 }
 
 body {
-    text-align: center;display: flex;
+    text-align: center;
+    display: flex;
     flex-direction: column;
     min-height: 100vh;
     background-color: #7B907B;
@@ -26,6 +28,8 @@ body {
 nav{
     background-color: #7A5E6A;
     width: 100%;
+    position: sticky;
+    top: 0;
 }
 
 .nav-list{
@@ -33,6 +37,7 @@ nav{
     justify-content: center;
     list-style-type: none;
     padding: 0;
+    overflow: hidden;
     text-align: center;
 }
 
@@ -54,13 +59,15 @@ li a:hover{
 }
 
 .email-link{
-    color: #A8D0D7; /* Blue color for the link */
-    text-decoration: none; /* Remove underline */
+    color: #A8D0D7;
+    text-decoration: none;
 }
 
 .content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    display: block;
     flex: 1;
+}
+
+.content div{
+    padding: 400px;
 }
