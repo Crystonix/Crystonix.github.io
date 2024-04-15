@@ -1,0 +1,3 @@
+[submodule "src/modules/pain"]
+	path = src/modules/pain
+	url = https://github.com/Crystonix/pain.git
