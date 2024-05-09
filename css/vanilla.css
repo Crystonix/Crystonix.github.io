@@ -47,6 +47,7 @@ article {
     background-color: rgba(0, 0, 0, 0.3);
     box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px, rgba(0, 0, 0, 0.19) 0px 6px 20px 0px;
     max-width: 600px;
+    min-width: 600px;
     margin: 20px;
     padding: 40px;
 }
@@ -81,7 +82,8 @@ li a {
 iframe {
     position: relative;
     display: block;
-    width: 560px;
+    width: 100%;
+    max-width: 560px;
     height: 315px;
     border-width: initial;
     border-style: none;
@@ -95,4 +97,14 @@ video {
     width: 100%;
     max-width: 600px;
     border-radius: 20px;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+}
+
+.centered{
+    padding: 20px;
+    text-align: center;
 }
