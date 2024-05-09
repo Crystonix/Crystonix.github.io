@@ -8,37 +8,60 @@
     <link rel="stylesheet" href="/css/vanilla.css">
 </head>
 <body>
-    <header>
-        <h1>Joshua Jung</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a class="nav-element" href="#work">Work</a></li>
-            <li><a class="nav-element" href="#about">About</a></li>
-            <li><a class="nav-element" href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-    <section id="work">
-        <h2>Work</h2>
-        <p>Diese Website ist mit HTML und CSS von mir erstellt worden.</p>
-        <p>Check mein Three.js Projekt: <a href="https://crystonix.github.io/unterwasser/">Unterwasser</a></p>
 
-    </section>
+<header>
+    <div>
+        <a href="http://crystonix.github.io" id="homepage-link">Joshua Jung</a>
+    </div>
 
-    <section id="about">
-        <h2>About</h2>
-        <p>Ich bin 2001 in Nordrhein-Westfalen geboren und studiere seit 2022 Medieninformatik in Stuttgart.</p>
-        <p>Ich bin an sehr vielen Bereichen der Medien interessiert und besonders in Verbindung zu meinen Hobbies!</p>
-        <p>Dazu zählen Gamedev, Webdev, Animation, Illustration und 3D Modelling.</p>
-    </section>
+    <div>
+        <nav>
+            <ul>
+                <li><a class="nav-element" href="#work">Work</a></li>
+                <li><a class="nav-element" href="#about">About</a></li>
+                <li><a class="nav-element" href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>E-Mail: <a href="mailto:joshua.jung@kjung.net" class="email-link">joshua.jung@kjung.net</a></p>
-    </section>
+</header>
 
-    <footer>
-        <p>Footer</p>
-    </footer>
+<section id="work">
+    <article class="three.js">
+        <h2>Three.js</h2>
+        <div>
+            <p>Erfahrung mit Three.js durch das Modul Computergrafik und ergänzende Kenntnisse durch mein Gamedev Hobby</p>
+            <p>Hier ist ein Video meiner Unterwasser-Scene zu sehen mit Particle Bubbles, Orbital Camera Controls, Heightmap Displacement und mehr.</p>
+            <video autoplay loop muted>
+                <source src="assets/videos/Unterwasser.mp4" type="video/mp4">
+                Your browser does not support this video tag
+            </video>
+            <p><a href="https://crystonix.github.io/unterwasser/" target="_blank">Zur Unterwasser Scene</a></p>
+        </div>
+    </article>
+
+    <article class="animation">
+        <h2>Animation</h2>
+        <p>In dem Modul Computer Animation haben wir im Team eine Animation erstellt. Ich war mitunter zuständig für Organisatorisches, die Produktions-Pipeline und Teile der Animation, Modelling und Compositing.</p>
+        <iframe src="https://www.youtube.com/embed/ZsaZKan7WM0" allowfullscreen></iframe>
+    </article>
+
+</section>
+
+<section id="about">
+    <h2>About</h2>
+    <p>Ich bin 2001 in Nordrhein-Westfalen geboren und studiere seit 2022 Medieninformatik in Stuttgart.</p>
+    <p>Ich bin an sehr vielen Bereichen der Medien interessiert und besonders in Verbindung zu meinen Hobbies!</p>
+    <p>Dazu zählen Gamedev, Webdev, Animation, Illustration und 3D Modelling.</p>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <p>E-Mail: <a href="mailto:joshua.jung@kjung.net" class="email-link">joshua.jung@kjung.net</a></p>
+</section>
+
+<footer>
+    <p>I hope you have a nice day !</p>
+</footer>
 </body>
 </html>
