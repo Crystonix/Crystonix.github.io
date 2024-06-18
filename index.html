@@ -26,14 +26,34 @@
     </div>
 
 </header>
-
 <section>
     <article>
         <h2>Willkommen auf meiner Website!</h2>
-        <p>Hier stelle ich meine letzten Projekte vor und zeige, was mich gerade begeistert.<br> Die Website zum Beispiel hab ich auch selbst gebastelt und per Github Pages ge-hosted ^-^.</p>
+        <p>Hier stelle ich meine letzten Projekte vor und zeige, was mich gerade begeistert.<br> Die Website zum Beispiel hab ich auch selbst mit simplem HTML/CSS gebastelt und per Github Pages ge-hosted ^-^.</p>
     </article>
 </section>
+
+<!-- Portfolio Area -->
 <section id="work">
+    <article class="CellularAutomata">
+        <h2>Dungeon Generation</h2>
+        <div>
+            <p>Mein Cellular Automata den ich mithilfe GodotEngine's GDExtension für C++ implementiert habe.</p>
+            <p>Die Regeln sind simple: Bei Acht Nachbarn einer Zelle wird, wenn 4 oder weniger aktive Nachbarn, die Zelle deaktiviert. Andernfalls bleibt sie aktiv.</p>
+            <p>Ich generiere auch anfangs Random Noise anhand eines Threshold-wertes. In diesem Fall 0,45. Noise ändert die Verteilung der Räume und je größer der Threshold, desto kleiner der Anteil Aktiven Zellen.</p>
+            <p>Das hier ist ein 512x512px Grid. Mit Godot's Scripting language war nur 128x128 möglich. Mit C++ aber bis zu 1024x1024.</p>
+            <p>Die Implementation in C++ gab einen ungefähren 5-fachen Speedboost.</p>
+            <iframe  src="https://www.youtube.com/embed/Y8MgzyOL0tg" allowfullscreen ></iframe>
+        </div>
+    </article>
+    <article class="Game-Dev">
+        <h2>Game-Art</h2>
+        <div>
+            <p>In dem Modul Game-Art wurden wir in die Prozesse der Game-Art Branche eingeführt. Ich habe im Laufe des Moduls meinen Character entwickelt und erste Assets angefertigt.</p>
+            <p>Ich wollte meinen Character aber auch gerne in Action sehen und habe daher diese Scene mit meinen Assets in Godot verwirklicht.</p>
+            <IMG SRC="assets/gifs/image25.gif" style="width: 100%;height: auto">
+        </div>
+    </article>
     <article class="three.js">
         <h2>Three.js</h2>
         <div>
@@ -49,21 +69,23 @@
 
     <article class="animation">
         <h2>Animation</h2>
-        <p>In dem Modul Computer Animation haben wir im Team eine Animation erstellt. Ich war mitunter zuständig für Organisatorisches, die Produktions-Pipeline und Teile der Animation, Modelling und Compositing.</p>
+        <p>In dem Modul Computer Animation haben wir im Team eine Animation erstellt. </p>
+        <p>Der Titel "The Legal Trap" kommt von einer bestimmten Serie von Schachzügen, die ein schnelles Ende zur Folge haben.</p>
+        <p>Ich war mitunter zuständig für Teile der Animation, Modelling, Compositing, sowie die Produktions-Pipeline und ganz, ganz viel Organisatorisches :D.</p>
+        <p>Es war wirklich spanned zum ersten Mal mit anderen an einem so großen Projekt zu arbeiten! </p>
+        <p>Herausfordern war vor allem das parallele Arbeiten und unser unterschiedlicher Wissensstand. Letztendlich waren wir aber doch sehr stolz auf unsere erste Animation in Blender.</p>
         <iframe src="https://www.youtube.com/embed/ZsaZKan7WM0" allowfullscreen></iframe>
     </article>
-
 </section>
+<!-- Portfolio Area -->
 
 <section id="about">
     <article class="centered">
         <h2>About</h2>
         <p>Ich bin 2001 in Nordrhein-Westfalen geboren und studiere seit 2022 Medieninformatik in Stuttgart.
             Ich bin an sehr vielen Bereichen der Medien interessiert und besonders in Verbindung zu meinen Hobbies!</p>
-           <p> Meine Hobbies: Gamedev, Webdev, Animation, Illustration und 3D Modelling.</p>
+        <p> Meine Hobbies: Gamedev, Webdev, Animation, Illustration und 3D Modelling.</p>
     </article>
-
-
 </section>
 
 <section id="contact">
