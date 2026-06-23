@@ -13,7 +13,7 @@ tags:
   - Redis
   - Content workflow
 highlights:
-  - Built around the needs of digital artists: artwork presentation, galleries, commissions, and editing.
+  - "Built around the needs of digital artists: artwork presentation, galleries, commissions, and editing."
   - Uses Astro for the public site and Directus for structured content management.
   - Started as a foundation that can grow into richer artist and commission features.
 ---
