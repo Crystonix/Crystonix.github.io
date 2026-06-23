@@ -6,7 +6,7 @@ import SectionHeading from '../../components/SectionHeading.astro';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 const featuredProjects = projects.filter((project) => project.data.featured);
-const categories = ['Web products', 'Game systems', 'Visual work'];
+const categories = ['Web Projects', 'Game Systems', 'Visual Work'];
 const groupedProjects = categories
   .map((category) => ({
     category,
@@ -17,21 +17,21 @@ const groupedProjects = categories
 
 <BaseLayout
   title="Projects | Crystonix"
-  description="Selected projects by Crystonix: web products, Godot systems, procedural generation, game art, Blender animation, and browser-based visual work."
+  description="A collection of web projects, game systems, visual experiments, animation work, and older project pieces by Crystonix."
 >
   <header class="page-header">
     <p class="eyebrow">Projects</p>
-    <h1 class="page-title">Selected work.</h1>
+    <h1 class="page-title">Projects, experiments, and visual work.</h1>
     <p class="page-lead">
-      A curated index of web products, game systems, visual scenes, game-art work, and animation projects.
+      A collection of things I’ve built, tested, designed, animated, or kept developing over time.
     </p>
   </header>
 
   <section class="section" aria-labelledby="featured-index-title">
     <SectionHeading
       label="Featured"
-      title="The strongest pieces to start with."
-      description="These projects give the clearest first impression across product work, game systems, and visual presentation."
+      title="A few good places to start."
+      description="These pieces show the range of the portfolio: web work, game systems, visual experiments, and animation."
     />
     <div class="card-grid">
       {featuredProjects.map((project) => (
@@ -49,9 +49,9 @@ const groupedProjects = categories
 
   <section class="section" aria-labelledby="all-projects-title">
     <SectionHeading
-      label="Index"
-      title="Work grouped by presentation area."
-      description="The index keeps web, game, and visual work separate so the portfolio does not read like one long software-only list."
+      label="All projects"
+      title="Browse by area."
+      description="Web, game, and visual pieces are grouped separately so each side of the work has room to breathe."
     />
 
     <div class="project-groups">
