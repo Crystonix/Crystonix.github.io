@@ -3,7 +3,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { legalProfile } from '../../data/legal';
 ---
 
-<BaseLayout title="Impressum | Crystonix" description="Anbieterkennzeichnung für das Crystonix Portfolio.">
+<BaseLayout
+  title="Impressum | Crystonix"
+  description="Anbieterkennzeichnung für das Crystonix Portfolio."
+>
   <header class="page-header legal-header">
     <p class="eyebrow">Impressum</p>
     <h1 class="page-title">Anbieterkennzeichnung.</h1>
@@ -13,11 +16,16 @@ import { legalProfile } from '../../data/legal';
   <section class="section legal-page" aria-labelledby="impressum-title">
     <article class="card legal-card">
       <p class="section__label">Verantwortlich</p>
-      <h2 id="impressum-title" class="section__title">{legalProfile.ownerName}</h2>
+      <h2 id="impressum-title" class="section__title">
+        {legalProfile.ownerName}
+      </h2>
       <address class="legal-address">
         {legalProfile.address.map((line) => <span>{line}</span>)}
       </address>
-      <p>E-Mail: <a href={`mailto:${legalProfile.email}`}>{legalProfile.email}</a></p>
+      <p>
+        E-Mail: <a href={`mailto:${legalProfile.email}`}>{legalProfile.email}</a
+        >
+      </p>
     </article>
   </section>
 </BaseLayout>
