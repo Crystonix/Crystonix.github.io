@@ -10,15 +10,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check",
-    "quality": "pnpm check && pnpm build",
     "astro": "astro"
   },
   "dependencies": {
     "astro": "^7.0.0"
-  },
-  "devDependencies": {
-    "@astrojs/check": "^0.9.9",
-    "typescript": "^6.0.3"
   }
 }
