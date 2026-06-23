@@ -13,7 +13,8 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, description, category, status, tags, highlights, links } = project.data;
+const { title, description, category, status, tags, highlights, links, cover, media } = project.data;
+const mediaItems = media.length > 0 ? media : cover ? [cover] : [];
 
 const formatHighlight = (highlight: unknown) => {
   if (typeof highlight === 'string') {
@@ -54,6 +55,37 @@ const formatHighlight = (highlight: unknown) => {
         </div>
       )}
     </header>
+
+    {mediaItems.length > 0 && (
+      <section class="project-media" aria-label="Project media">
+        {mediaItems.map((item) => (
+          <figure class="project-media__item">
+            {item.type === 'image' && <img src={item.src} alt={item.alt ?? ''} loading="lazy" />}
+
+            {item.type === 'video' && (
+              <video controls playsinline preload="metadata" poster={'poster' in item ? item.poster : undefined}>
+                <source src={item.src} />
+                Your browser does not support the video element.
+              </video>
+            )}
+
+            {item.type === 'youtube' && (
+              <div class="project-media__embed">
+                <iframe
+                  src={item.src}
+                  title={item.title ?? title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            )}
+
+            {item.title && <figcaption>{item.title}</figcaption>}
+          </figure>
+        ))}
+      </section>
+    )}
 
     <div class="project-detail__layout">
       <div class="project-detail__content prose">
