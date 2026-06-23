@@ -16,6 +16,37 @@ const skillGroups = [
   },
 ];
 
+const selectedWork = [
+  {
+    title: 'Artist Platform',
+    href: '/projects/artist-platform/',
+    label: 'Web Projects',
+    description:
+      'A web foundation for galleries, artist profile pages, content editing, and structured publishing workflows.',
+  },
+  {
+    title: 'Godot Dungeon Generation',
+    href: '/projects/godot-dungeon-generation/',
+    label: 'Game Systems',
+    description:
+      'A procedural generation project that shapes cave-like layouts from grid data and repeated rule-based passes.',
+  },
+  {
+    title: 'Underwater Scene',
+    href: '/projects/underwater-threejs-scene/',
+    label: 'Visual Work',
+    description:
+      'A browser-based 3D scene with terrain, lighting, camera movement, animated bubbles, and underwater atmosphere.',
+  },
+  {
+    title: 'Game Art & Visuals',
+    href: '/projects/game-art-visuals/',
+    label: 'Visual Work',
+    description:
+      'A visual collection for game-art pieces, character presentation, scene composition, motion work, GIFs, and renders.',
+  },
+];
+
 const currentFocus = [
   'Making project pages clearer and more personal.',
   'Connecting web projects, game systems, and visual work in one portfolio.',
@@ -72,6 +103,30 @@ const currentFocus = [
               {group.items.map((item) => <li>{item}</li>)}
             </ul>
           </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="resume-work-title">
+    <div class="section__header">
+      <p class="section__label">Selected work</p>
+      <h2 id="resume-work-title" class="section__title">
+        Project evidence.
+      </h2>
+      <p class="section__description">
+        Each entry links to a project page with more context, media, tools, and
+        notes.
+      </p>
+    </div>
+    <div class="card-grid">
+      {
+        selectedWork.map((project) => (
+          <a class="card" href={project.href}>
+            <span class="badge">{project.label}</span>
+            <h3>{project.title}</h3>
+            <p>{project.description}</p>
+          </a>
         ))
       }
     </div>
