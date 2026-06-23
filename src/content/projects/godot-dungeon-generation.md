@@ -5,6 +5,10 @@ category: Game Systems
 status: Procedural system
 featured: true
 order: 3
+cover:
+  type: image
+  src: https://img.youtube.com/vi/Y8MgzyOL0tg/hqdefault.jpg
+  alt: Thumbnail for the Godot dungeon generation demo.
 media:
   - type: youtube
     src: https://www.youtube.com/embed/Y8MgzyOL0tg
