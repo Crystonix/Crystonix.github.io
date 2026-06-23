@@ -31,7 +31,10 @@ const [heroVisualItem, ...previewReelItems] = heroReelItems;
 
   {
     previewReelItems.length > 0 && (
-      <section class="section home-preview-reel" aria-label="Selected project previews">
+      <section
+        class="section home-preview-reel"
+        aria-label="Selected project previews"
+      >
         <HeroReel
           items={previewReelItems}
           variant="strip"
