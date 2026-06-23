@@ -1,5 +1,5 @@
 ---
-import HeroReelTile from './HeroReelTile.astro';
+import HeroReelTile, { type HeroReelAspect } from './HeroReelTile.astro';
 
 type MediaCover = {
   type: 'image' | 'video';
@@ -14,29 +14,61 @@ interface ReelItem {
   label: string;
   href: string;
   cover: MediaCover;
+  aspect?: HeroReelAspect;
 }
 
 interface Props {
   items: ReelItem[];
+  featuredAspect?: HeroReelAspect;
+  supportingAspect?: HeroReelAspect;
+  label?: string;
 }
 
-const { items } = Astro.props;
+const {
+  items,
+  featuredAspect = 'wide',
+  supportingAspect = 'wide',
+  label = 'Selected project previews',
+} = Astro.props;
+const [featuredItem, ...supportingItems] = items;
 ---
 
-<aside class="hero-reel-shell" aria-label="Selected visual work preview">
-  <div class="hero-reel">
-    {
-      items.map((item, index) => (
-        <HeroReelTile
-          title={item.title}
-          label={item.label}
-          href={item.href}
-          cover={item.cover}
-          featured={index === 0}
-          loading={index === 0 ? 'eager' : 'lazy'}
-        />
-      ))
-    }
+<aside class="hero-reel-shell" aria-label={label}>
+  <div class="hero-reel-stage">
+    <div class="hero-reel">
+      {
+        featuredItem && (
+          <div class="hero-reel__featured">
+            <HeroReelTile
+              title={featuredItem.title}
+              label={featuredItem.label}
+              href={featuredItem.href}
+              cover={featuredItem.cover}
+              featured
+              aspect={featuredItem.aspect ?? featuredAspect}
+              loading="eager"
+            />
+          </div>
+        )
+      }
+
+      {
+        supportingItems.length > 0 && (
+          <div class="hero-reel__supporting">
+            {supportingItems.map((item) => (
+              <HeroReelTile
+                title={item.title}
+                label={item.label}
+                href={item.href}
+                cover={item.cover}
+                aspect={item.aspect ?? supportingAspect}
+                loading="lazy"
+              />
+            ))}
+          </div>
+        )
+      }
+    </div>
   </div>
 </aside>
 
@@ -44,62 +76,73 @@ const { items } = Astro.props;
   .hero-reel-shell {
     position: relative;
     isolation: isolate;
-    min-height: clamp(22rem, 40vw, 32rem);
+  }
+
+  .hero-reel-stage {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: clamp(1.35rem, 2.6vw, 2rem);
+    background:
+      radial-gradient(circle at 15% 0%, rgba(125, 211, 252, 0.16), transparent 34%),
+      radial-gradient(circle at 88% 14%, rgba(14, 165, 233, 0.12), transparent 36%),
+      rgba(8, 13, 24, 0.64);
+    box-shadow:
+      0 34px 90px rgba(0, 0, 0, 0.34),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    padding: clamp(0.65rem, 1.35vw, 1rem);
+  }
+
+  .hero-reel-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      transparent 34%,
+      rgba(125, 211, 252, 0.06)
+    );
+    pointer-events: none;
   }
 
   .hero-reel {
+    position: relative;
+    z-index: 1;
     display: grid;
-    min-height: inherit;
-    grid-template-columns: minmax(0, 1.55fr) minmax(11rem, 0.95fr);
-    grid-template-rows: repeat(3, minmax(0, 1fr));
     gap: clamp(0.7rem, 1.2vw, 0.95rem);
   }
 
-  .hero-reel :global(.hero-reel-tile--featured) {
-    grid-column: 1 / 2;
-    grid-row: 1 / 4;
+  .hero-reel__featured,
+  .hero-reel__supporting {
+    display: grid;
+    min-width: 0;
   }
 
-  .hero-reel
-    :global(.hero-reel-tile:not(.hero-reel-tile--featured):nth-child(2)) {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-  }
-
-  .hero-reel
-    :global(.hero-reel-tile:not(.hero-reel-tile--featured):nth-child(3)) {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-  }
-
-  .hero-reel
-    :global(.hero-reel-tile:not(.hero-reel-tile--featured):nth-child(4)) {
-    grid-column: 2 / 3;
-    grid-row: 3 / 4;
+  .hero-reel__supporting {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(0.7rem, 1.2vw, 0.95rem);
   }
 
   @media (max-width: 960px) {
-    .hero-reel-shell {
-      min-height: clamp(24rem, 68vw, 34rem);
+    .hero-reel__supporting {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
-  @media (max-width: 620px) {
-    .hero-reel {
-      min-height: auto;
+  @media (max-width: 720px) {
+    .hero-reel__supporting {
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: none;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .hero-reel-stage {
+      padding: 0.55rem;
     }
 
-    .hero-reel :global(.hero-reel-tile) {
-      min-height: 9.5rem;
-      grid-column: auto !important;
-      grid-row: auto !important;
-    }
-
-    .hero-reel :global(.hero-reel-tile--featured) {
-      min-height: 14rem;
-      grid-column: span 2 !important;
+    .hero-reel__supporting {
+      grid-template-columns: 1fr;
     }
   }
 </style>
