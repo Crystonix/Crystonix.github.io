@@ -10,6 +10,7 @@ type MediaCover = {
 };
 
 type HeroReelAspect = 'wide' | 'landscape' | 'portrait' | 'square';
+type HeroReelVariant = 'featured' | 'strip';
 
 interface ReelItem {
   title: string;
@@ -24,6 +25,7 @@ interface Props {
   featuredAspect?: HeroReelAspect;
   supportingAspect?: HeroReelAspect;
   label?: string;
+  variant?: HeroReelVariant;
 }
 
 const {
@@ -31,15 +33,16 @@ const {
   featuredAspect = 'wide',
   supportingAspect = 'wide',
   label = 'Selected project previews',
+  variant = 'featured',
 } = Astro.props;
 const [featuredItem, ...supportingItems] = items;
 ---
 
-<aside class="hero-reel-shell" aria-label={label}>
+<aside class:list={['hero-reel-shell', `hero-reel-shell--${variant}`]} aria-label={label}>
   <div class="hero-reel-stage">
-    <div class="hero-reel">
+    <div class:list={['hero-reel', `hero-reel--${variant}`]}>
       {
-        featuredItem && (
+        variant === 'featured' && featuredItem && (
           <section class="hero-reel__featured" aria-label="Featured preview">
             <HeroReelTile
               title={featuredItem.title}
@@ -55,12 +58,29 @@ const [featuredItem, ...supportingItems] = items;
       }
 
       {
-        supportingItems.length > 0 && (
+        variant === 'featured' && supportingItems.length > 0 && (
           <section
             class="hero-reel__supporting"
             aria-label="More project previews"
           >
             {supportingItems.map((item) => (
+              <HeroReelTile
+                title={item.title}
+                label={item.label}
+                href={item.href}
+                cover={item.cover}
+                aspect={item.aspect ?? supportingAspect}
+                loading="lazy"
+              />
+            ))}
+          </section>
+        )
+      }
+
+      {
+        variant === 'strip' && items.length > 0 && (
+          <section class="hero-reel__strip" aria-label="Project previews">
+            {items.map((item) => (
               <HeroReelTile
                 title={item.title}
                 label={item.label}
@@ -128,18 +148,21 @@ const [featuredItem, ...supportingItems] = items;
   }
 
   .hero-reel__featured,
-  .hero-reel__supporting {
+  .hero-reel__supporting,
+  .hero-reel__strip {
     display: grid;
     min-width: 0;
   }
 
-  .hero-reel__supporting {
+  .hero-reel__supporting,
+  .hero-reel__strip {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(0.7rem, 1.2vw, 0.95rem);
   }
 
   @media (max-width: 720px) {
-    .hero-reel__supporting {
+    .hero-reel__supporting,
+    .hero-reel__strip {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
@@ -149,7 +172,8 @@ const [featuredItem, ...supportingItems] = items;
       padding: 0.55rem;
     }
 
-    .hero-reel__supporting {
+    .hero-reel__supporting,
+    .hero-reel__strip {
       grid-template-columns: 1fr;
     }
   }
