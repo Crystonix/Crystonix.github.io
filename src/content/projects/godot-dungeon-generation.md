@@ -7,8 +7,14 @@ featured: true
 order: 3
 cover:
   type: image
-  src: https://img.youtube.com/vi/Y8MgzyOL0tg/hqdefault.jpg
-  alt: Thumbnail for the Godot dungeon generation demo.
+  src: /projects/dungeon-generation/card.svg
+  alt: Stylized thumbnail for the Godot dungeon generation project.
+  position: center
+heroCover:
+  type: image
+  src: /projects/dungeon-generation/hero.svg
+  alt: Wide hero thumbnail for the Godot dungeon generation project.
+  position: center
 media:
   - type: youtube
     src: https://www.youtube.com/embed/Y8MgzyOL0tg
