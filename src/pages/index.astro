@@ -1,88 +1,94 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 
+const projects = await getCollection('projects');
+const featuredProjects = projects
+  .filter((project) => project.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
 const focusAreas = [
   {
-    title: 'Portfolio foundation',
+    title: 'Web application architecture',
     description:
-      'A clean Astro and GitHub Pages setup for publishing project write-ups, technical notes, and a public engineering profile.',
-    tags: ['Astro', 'GitHub Pages', 'Static site'],
-    href: '/projects/',
+      'Static-first Astro work, service boundaries, authentication flows, and content-backed product foundations.',
   },
   {
-    title: 'Project case studies',
+    title: 'Game systems and tooling',
     description:
-      'A dedicated space for documenting completed work with goals, architecture decisions, implementation notes, and outcomes.',
-    tags: ['Architecture', 'Case studies'],
-    href: '/projects/',
+      'Godot systems, procedural generation, editor tooling, and performance-oriented implementation paths.',
   },
   {
-    title: 'Engineering notes',
+    title: 'Graphics and creative tech',
     description:
-      'A place for concise technical notes, deployment learnings, and implementation decisions worth keeping long term.',
-    tags: ['Notes', 'Systems'],
-    href: '/about/',
+      'Three.js scenes, Blender production work, animation, particles, and browser-based visual experiments.',
   },
-];
-
-const principles = [
-  'Prefer simple, durable systems over avoidable complexity.',
-  'Keep deployment reproducible and source-controlled.',
-  'Document technical decisions so future changes are easier to make safely.',
 ];
 ---
 
 <BaseLayout
-  title="Crystonix | Portfolio"
-  description="Crystonix portfolio site for software projects, engineering notes, and technical work."
+  title="Crystonix | Software, game systems, and creative tech"
+  description="Crystonix portfolio featuring web applications, game development systems, graphics experiments, and technical case studies."
 >
   <Hero
-    eyebrow="Astro portfolio · GitHub Pages"
+    eyebrow="Software · Game systems · Creative tech"
     title="Crystonix"
-    lead="A focused portfolio for software projects, engineering decisions, and technical work published from a clean Astro foundation."
+    lead="A project portfolio focused on durable web architecture, Godot systems, procedural generation, and browser-based graphics work."
   />
 
-  <section class="section" aria-labelledby="work-title">
+  <section class="section" aria-labelledby="featured-projects-title">
     <SectionHeading
-      label="Current direction"
-      title="A portfolio built to grow with the work."
-      description="The site is structured as a long-term home for project write-ups, technical documentation, and practical engineering notes."
+      label="Featured work"
+      title="Selected projects with real technical substance."
+      description="These projects were selected from the repository audit because they have the strongest architecture, implementation, or visual-systems story."
     />
 
     <div class="card-grid">
-      {focusAreas.map((item) => <ProjectCard {...item} />)}
+      {featuredProjects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          href={`/projects/${project.id}/`}
+          tags={project.data.tags}
+          category={project.data.category}
+          status={project.data.status}
+        />
+      ))}
     </div>
   </section>
 
-  <section class="section split" aria-labelledby="approach-title">
+  <section class="section split" aria-labelledby="focus-title">
     <div>
-      <p class="section__label">Approach</p>
-      <h2 id="approach-title" class="section__title">Clean foundations first.</h2>
+      <p class="section__label">Focus</p>
+      <h2 id="focus-title" class="section__title">A portfolio organized by engineering signal.</h2>
     </div>
 
     <div class="stack">
       <p class="section__description">
-        This portfolio starts with a static, low-maintenance architecture: Astro for the site,
-        pnpm for dependency management, and GitHub Actions for deployment to GitHub Pages.
+        The site is now content-driven: projects live as typed Markdown entries, the homepage only shows selected featured work, and the full project index can grow without duplicating page logic.
       </p>
-      <ul class="list">
-        {principles.map((principle) => <li>{principle}</li>)}
-      </ul>
+      <div class="focus-list">
+        {focusAreas.map((area) => (
+          <article class="focus-item">
+            <h3>{area.title}</h3>
+            <p>{area.description}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
   <section class="section card" aria-labelledby="next-title">
     <p class="section__label">Next</p>
-    <h2 id="next-title" class="section__title">Add real project content as separate case studies.</h2>
+    <h2 id="next-title" class="section__title">Turn the strongest projects into deeper case studies.</h2>
     <p class="section__description">
-      The next clean step is to turn each meaningful GitHub project into a dedicated write-up
-      with problem context, architecture, trade-offs, and links to the repository or demo.
+      The structure is ready for screenshots, architecture diagrams, performance notes, and more precise implementation details as each repository is cleaned up.
     </p>
     <div class="actions">
-      <a class="button button--primary" href="/projects/">Open projects</a>
+      <a class="button button--primary" href="/projects/">Open all projects</a>
       <a class="button button--secondary" href="https://github.com/Crystonix" rel="noreferrer">View GitHub profile</a>
     </div>
   </section>
