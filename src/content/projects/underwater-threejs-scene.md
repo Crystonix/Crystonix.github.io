@@ -1,7 +1,7 @@
 ---
 title: Underwater Scene
-description: A browser-based 3D underwater scene with terrain, animated bubbles, camera movement, lighting, and atmospheric composition.
-category: Visual work
+description: A browser-based 3D scene with terrain, animated bubbles, camera movement, lighting, and underwater atmosphere.
+category: Visual Work
 status: Interactive scene
 featured: true
 order: 4
@@ -15,19 +15,19 @@ tags:
 links:
   repo: https://github.com/Crystonix/unterwasser
 highlights:
-  - Builds a small atmospheric scene with terrain, lighting, and camera setup.
-  - Uses animated bubbles to add motion and depth to the environment.
-  - Combines texture and displacement work for the underwater ground plane.
+  - Builds a small atmospheric underwater scene.
+  - Uses animated bubbles to add motion and depth.
+  - Combines texture and displacement work for the ground plane.
 ---
 
-## Overview
+## About
 
-Underwater Scene is an interactive browser-based visual piece built with Three.js. The scene focuses on atmosphere: a textured underwater ground plane, camera setup, lighting, and animated bubbles that give the environment movement.
+Underwater Scene is an interactive browser-based visual piece built with Three.js. The scene focuses on atmosphere: underwater terrain, lighting, camera movement, and bubbles moving through the environment.
 
-## My focus
+## What I worked on
 
-The work centers on scene composition and visual behavior in the browser. Instead of a static page, the project uses geometry, animation, particles, and camera controls to create a more immersive visual result.
+I worked on the scene setup, terrain, animation loop, camera, and bubble movement. The goal was to make a small visual environment that feels alive instead of a static 3D object on a page.
 
-## Why it matters
+## What I like about it
 
-This piece belongs in the visual side of the portfolio. It shows creative coding, browser graphics, and the ability to build a visual scene from separate parts rather than relying on a prebuilt template.
+I like this piece because it sits between code and visual design. It uses browser graphics as a creative medium, not just as a technical demo.
