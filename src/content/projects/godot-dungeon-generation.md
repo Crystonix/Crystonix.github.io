@@ -1,8 +1,8 @@
 ---
 title: Godot Dungeon Generation
-description: Cellular automata cave-generation system implemented first in GDScript and then ported to a C++ GDExtension for stronger runtime performance and larger grid support.
-category: Game development
-status: Performance-focused system
+description: A procedural cave and dungeon generation project for Godot, built around cellular automata and later explored through a native C++ extension.
+category: Game systems
+status: Procedural system
 featured: true
 order: 3
 tags:
@@ -15,19 +15,19 @@ tags:
 links:
   repo: https://github.com/Crystonix/CaveGen-GDExtension
 highlights:
-  - Cellular automata erosion rules for cave and dungeon generation.
-  - Godot-facing C++ class exposed through GDExtension bindings.
-  - Clear comparison story between a GDScript implementation and a native extension.
+  - Generates cave-like dungeon layouts from noisy grid data.
+  - Uses erosion rules to shape more natural-looking spaces.
+  - Explores a C++ GDExtension path for heavier generation work.
 ---
 
-## Project context
+## Overview
 
-This project explores procedural cave and dungeon generation in Godot. The core idea is to generate noisy grid data and repeatedly apply cellular automata erosion rules until the result becomes usable level geometry.
+Godot Dungeon Generation explores how cave and dungeon layouts can be produced from simple rules. The project starts from noisy grid data and repeatedly applies cellular automata erosion until the result becomes a usable level shape.
 
-## Technical focus
+## My focus
 
-The project started with a GDScript implementation and then moved the generation logic into a C++ GDExtension. That makes the project a strong technical case study because it is not only about the algorithm, but also about moving expensive logic across a runtime boundary when the project needs more performance headroom.
+The main focus is the generation behavior: grid setup, noise, neighbor checks, erosion passes, and exposing the result back into Godot. The project was first explored in GDScript and then moved toward a C++ GDExtension for more demanding generation work.
 
-## Why it belongs here
+## Why it matters
 
-This is one of the clearest portfolio stories: a gameplay/system problem, an initial high-level implementation, and a lower-level implementation path that exposes the system back to Godot.
+This is one of the clearest game-system pieces in the portfolio. It has a visible result, a concrete algorithmic idea, and a progression from prototype scripting toward a more performance-oriented implementation.
