@@ -2,6 +2,14 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
+const mediaItemSchema = z.object({
+  type: z.enum(['image', 'video', 'youtube']),
+  src: z.string(),
+  title: z.string().optional(),
+  alt: z.string().optional(),
+  poster: z.string().optional(),
+});
+
 const projects = defineCollection({
   loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
   schema: z.object({
@@ -13,6 +21,8 @@ const projects = defineCollection({
     order: z.number(),
     tags: z.array(z.string()).default([]),
     highlights: z.array(z.unknown()).default([]),
+    cover: mediaItemSchema.omit({ title: true, poster: true }).optional(),
+    media: z.array(mediaItemSchema).default([]),
     links: z
       .object({
         repo: z.string().url().optional(),
