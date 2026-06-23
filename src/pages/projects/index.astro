@@ -6,7 +6,7 @@ import SectionHeading from '../../components/SectionHeading.astro';
 
 const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
 const featuredProjects = projects.filter((project) => project.data.featured);
-const categories = ['Web applications', 'Game development', 'Tooling', 'Graphics and creative tech'];
+const categories = ['Web products', 'Game systems', 'Visual work'];
 const groupedProjects = categories
   .map((category) => ({
     category,
@@ -17,21 +17,21 @@ const groupedProjects = categories
 
 <BaseLayout
   title="Projects | Crystonix"
-  description="Curated project index for Crystonix: web applications, Godot systems, tooling, and creative technology work."
+  description="Selected projects by Crystonix: web products, Godot systems, procedural generation, game art, Blender animation, and browser-based visual work."
 >
   <header class="page-header">
     <p class="eyebrow">Projects</p>
-    <h1 class="page-title">Curated technical work.</h1>
+    <h1 class="page-title">Selected work.</h1>
     <p class="page-lead">
-      A selected project index built from typed Markdown entries. Each project has a dedicated page for context, technical focus, and links.
+      A curated index of web products, game systems, visual scenes, game-art work, and animation projects.
     </p>
   </header>
 
   <section class="section" aria-labelledby="featured-index-title">
     <SectionHeading
       label="Featured"
-      title="The strongest portfolio candidates."
-      description="These are the projects currently suitable for the homepage because they have the clearest technical story or product architecture."
+      title="The strongest pieces to start with."
+      description="These projects give the clearest first impression across product work, game systems, and visual presentation."
     />
     <div class="card-grid">
       {featuredProjects.map((project) => (
@@ -50,8 +50,8 @@ const groupedProjects = categories
   <section class="section" aria-labelledby="all-projects-title">
     <SectionHeading
       label="Index"
-      title="All displayed projects."
-      description="Secondary projects are included when they add useful context, but the homepage remains intentionally selective."
+      title="Work grouped by presentation area."
+      description="The index keeps web, game, and visual work separate so the portfolio does not read like one long software-only list."
     />
 
     <div class="project-groups">
