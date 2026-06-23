@@ -6,11 +6,13 @@ import SiteHeader from '../components/SiteHeader.astro';
 interface Props {
   title: string;
   description?: string;
+  lang?: string;
 }
 
 const {
   title,
   description = 'Portfolio site for Crystonix: projects, experiments, games, and visual work.',
+  lang = 'en',
 } = Astro.props;
 const canonicalUrl = new URL(
   Astro.url.pathname,
@@ -19,7 +21,7 @@ const canonicalUrl = new URL(
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
