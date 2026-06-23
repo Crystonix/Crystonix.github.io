@@ -3,6 +3,11 @@
   padding-bottom: 0.2rem;
 }
 
-.site-nav a:hover {
+.site-nav a:hover,
+.site-nav a[aria-current] {
   border-bottom-color: var(--color-accent);
+}
+
+.site-nav a[aria-current] {
+  color: var(--color-text);
 }
