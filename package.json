@@ -13,6 +13,7 @@
     "check": "astro check",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
+    "quality": "pnpm run format:check && pnpm run check && pnpm run build",
     "astro": "astro"
   },
   "dependencies": {
