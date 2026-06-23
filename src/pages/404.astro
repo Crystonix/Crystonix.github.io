@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Not found | Crystonix"
+  description="The requested page could not be found on the Crystonix portfolio."
+>
+  <section class="hero" aria-labelledby="not-found-title">
+    <div class="hero__content">
+      <p class="eyebrow">404</p>
+      <h1 id="not-found-title">Page not found.</h1>
+      <p class="hero__lead">
+        The route does not exist yet, or the page has moved while the portfolio is being built out.
+      </p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="/">Back home</a>
+        <a class="button button--secondary" href="/projects/">View projects</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
