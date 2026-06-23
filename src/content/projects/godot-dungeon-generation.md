@@ -1,7 +1,7 @@
 ---
 title: Godot Dungeon Generation
-description: A procedural cave and dungeon generation project for Godot, built around cellular automata and later explored through a native C++ extension.
-category: Game systems
+description: A Godot project for generating cave-like dungeon layouts from simple rules, first explored in GDScript and later through a C++ extension.
+category: Game Systems
 status: Procedural system
 featured: true
 order: 3
@@ -15,19 +15,19 @@ tags:
 links:
   repo: https://github.com/Crystonix/CaveGen-GDExtension
 highlights:
-  - Generates cave-like dungeon layouts from noisy grid data.
-  - Uses erosion rules to shape more natural-looking spaces.
-  - Explores a C++ GDExtension path for heavier generation work.
+  - Generates cave-like layouts from noisy grid data.
+  - Uses repeated erosion passes to shape more natural spaces.
+  - Explores a C++ extension path for heavier generation work.
 ---
 
-## Overview
+## About
 
-Godot Dungeon Generation explores how cave and dungeon layouts can be produced from simple rules. The project starts from noisy grid data and repeatedly applies cellular automata erosion until the result becomes a usable level shape.
+Godot Dungeon Generation explores how cave and dungeon shapes can come from simple rules. The project starts with noisy grid data and repeatedly changes the cells until the result becomes a more usable level shape.
 
-## My focus
+## What I worked on
 
-The main focus is the generation behavior: grid setup, noise, neighbor checks, erosion passes, and exposing the result back into Godot. The project was first explored in GDScript and then moved toward a C++ GDExtension for more demanding generation work.
+I worked on the generation behavior: setting up the grid, creating noise, checking neighbors, running erosion passes, and bringing the generated result back into Godot.
 
-## Why it matters
+## What I like about it
 
-This is one of the clearest game-system pieces in the portfolio. It has a visible result, a concrete algorithmic idea, and a progression from prototype scripting toward a more performance-oriented implementation.
+I like this project because the result is visual and immediate. It also shows a natural progression from a GDScript prototype toward a C++ extension for heavier generation work.
