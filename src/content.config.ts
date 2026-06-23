@@ -8,7 +8,10 @@ const mediaItemSchema = z.object({
   title: z.string().optional(),
   alt: z.string().optional(),
   poster: z.string().optional(),
+  position: z.string().optional(),
 });
+
+const coverSchema = mediaItemSchema.omit({ title: true, poster: true });
 
 const projects = defineCollection({
   loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
@@ -21,7 +24,8 @@ const projects = defineCollection({
     order: z.number(),
     tags: z.array(z.string()).default([]),
     highlights: z.array(z.unknown()).default([]),
-    cover: mediaItemSchema.omit({ title: true, poster: true }).optional(),
+    cover: coverSchema.optional(),
+    heroCover: coverSchema.optional(),
     media: z.array(mediaItemSchema).default([]),
     links: z
       .object({
