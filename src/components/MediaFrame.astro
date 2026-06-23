@@ -49,44 +49,61 @@ const {
   loop = autoplay,
 } = Astro.props;
 
-const position = 'position' in media ? media.position ?? 'center' : undefined;
-const alt = decorative ? '' : 'alt' in media ? media.alt ?? '' : '';
+const position = 'position' in media ? (media.position ?? 'center') : undefined;
+const alt = decorative ? '' : 'alt' in media ? (media.alt ?? '') : '';
 const title = media.title ?? caption ?? 'Project media';
 const shouldSyncMotion = media.type === 'video' && autoplay;
 ---
 
-<figure class:list={['media-frame', `media-frame--${variant}`, media.type === 'youtube' && 'media-frame--embed']}>
+<figure
+  class:list={[
+    'media-frame',
+    `media-frame--${variant}`,
+    media.type === 'youtube' && 'media-frame--embed',
+  ]}
+>
   <div class="media-frame__surface">
-    {media.type === 'image' && (
-      <img src={media.src} alt={alt} loading={loading} style={{ objectPosition: position }} />
-    )}
+    {
+      media.type === 'image' && (
+        <img
+          src={media.src}
+          alt={alt}
+          loading={loading}
+          style={{ objectPosition: position }}
+        />
+      )
+    }
 
-    {media.type === 'video' && (
-      <video
-        src={media.src}
-        autoplay={autoplay}
-        controls={controls}
-        muted={muted}
-        loop={loop}
-        playsinline
-        preload="metadata"
-        poster={media.poster}
-        style={{ objectPosition: position }}
-        data-motion-video={shouldSyncMotion ? 'true' : undefined}
-      >
-        Your browser does not support the video element.
-      </video>
-    )}
+    {
+      media.type === 'video' && (
+        <video
+          src={media.src}
+          autoplay={autoplay}
+          controls={controls}
+          muted={muted}
+          loop={loop}
+          playsinline
+          preload="metadata"
+          poster={media.poster}
+          style={{ objectPosition: position }}
+          data-motion-video={shouldSyncMotion ? 'true' : undefined}
+        >
+          Your browser does not support the video element.
+        </video>
+      )
+    }
 
-    {media.type === 'youtube' && (
-      <iframe
-        src={media.src}
-        title={title}
-        loading="lazy"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
-    )}
+    {
+      media.type === 'youtube' && (
+        <iframe
+          src={media.src}
+          title={title}
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        />
+      )
+    }
   </div>
 
   {caption && <figcaption>{caption}</figcaption>}
