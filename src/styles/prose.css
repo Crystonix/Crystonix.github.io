@@ -1,5 +1,16 @@
+:root {
+  --shadow-card: 0 14px 36px rgba(0, 0, 0, 0.22);
+  --shadow-feature: 0 22px 64px rgba(0, 0, 0, 0.32);
+  --radius-lg: 20px;
+  --radius-md: 16px;
+}
+
 .section--prose {
   border-top: 1px solid var(--color-border);
+}
+
+.section--prose .section__description {
+  max-width: 44rem;
 }
 
 .surface--quiet {
@@ -30,4 +41,9 @@
 
 .prose-list li::marker {
   color: var(--color-accent);
+}
+
+.card,
+.focus-item {
+  background: rgba(255, 255, 255, 0.04);
 }
