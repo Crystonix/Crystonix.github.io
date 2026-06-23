@@ -1,8 +1,8 @@
 ---
-import HeroReelTile from "./HeroReelTile.astro";
+import HeroReelTile from './HeroReelTile.astro';
 
 type MediaCover = {
-  type: "image" | "video";
+  type: 'image' | 'video';
   src: string;
   alt?: string;
   position?: string;
@@ -25,16 +25,18 @@ const { items } = Astro.props;
 
 <aside class="hero-reel-shell" aria-label="Selected visual work preview">
   <div class="hero-reel">
-    {items.map((item, index) => (
-      <HeroReelTile
-        title={item.title}
-        label={item.label}
-        href={item.href}
-        cover={item.cover}
-        featured={index === 0}
-        loading={index === 0 ? "eager" : "lazy"}
-      />
-    ))}
+    {
+      items.map((item, index) => (
+        <HeroReelTile
+          title={item.title}
+          label={item.label}
+          href={item.href}
+          cover={item.cover}
+          featured={index === 0}
+          loading={index === 0 ? 'eager' : 'lazy'}
+        />
+      ))
+    }
   </div>
 </aside>
 
@@ -58,17 +60,20 @@ const { items } = Astro.props;
     grid-row: 1 / 4;
   }
 
-  .hero-reel :global(.hero-reel-tile:not(.hero-reel-tile--featured):nth-child(2)) {
+  .hero-reel
+    :global(.hero-reel-tile:not(.hero-reel-tile--featured):nth-child(2)) {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
   }
 
-  .hero-reel :global(.hero-reel-tile:not(.hero-reel-tile--featured):nth-child(3)) {
+  .hero-reel
+    :global(.hero-reel-tile:not(.hero-reel-tile--featured):nth-child(3)) {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
   }
 
-  .hero-reel :global(.hero-reel-tile:not(.hero-reel-tile--featured):nth-child(4)) {
+  .hero-reel
+    :global(.hero-reel-tile:not(.hero-reel-tile--featured):nth-child(4)) {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
   }

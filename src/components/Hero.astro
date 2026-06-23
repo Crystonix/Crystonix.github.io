@@ -1,8 +1,8 @@
 ---
-import HeroReel from "./HeroReel.astro";
+import HeroReel from './HeroReel.astro';
 
 type MediaCover = {
-  type: "image" | "video";
+  type: 'image' | 'video';
   src: string;
   alt?: string;
   position?: string;
@@ -27,7 +27,7 @@ const { eyebrow, title, lead, reelItems = [] } = Astro.props;
 ---
 
 <section
-  class:list={["hero", reelItems.length > 0 && "hero--with-reel"]}
+  class:list={['hero', reelItems.length > 0 && 'hero--with-reel']}
   aria-labelledby="hero-title"
 >
   <div class="hero__content">

@@ -1,10 +1,10 @@
 ---
-import { getCollection, render } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import MediaFrame from "../../components/MediaFrame.astro";
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MediaFrame from '../../components/MediaFrame.astro';
 
 export async function getStaticPaths() {
-  const projects = await getCollection("projects");
+  const projects = await getCollection('projects');
 
   return projects.map((project) => ({
     params: { slug: project.id },
@@ -14,10 +14,22 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const { title, description, category, status, tags, links, cover, media, highlights } = project.data;
+const {
+  title,
+  description,
+  category,
+  status,
+  tags,
+  links,
+  cover,
+  media,
+  highlights,
+} = project.data;
 const mediaItems = media.length > 0 ? media : cover ? [cover] : [];
 const notes = highlights
-  .map((highlight) => (typeof highlight === "string" ? { text: highlight } : highlight))
+  .map((highlight) =>
+    typeof highlight === 'string' ? { text: highlight } : highlight,
+  )
   .filter((highlight) => highlight.text.trim().length > 0);
 ---
 
@@ -28,31 +40,51 @@ const notes = highlights
       <h1 class="page-title">{title}</h1>
       <p class="page-lead">{description}</p>
 
-      {(links.repo || links.demo) && (
-        <div class="actions">
-          {links.repo && (
-            <a class="button button--primary" href={links.repo} rel="noreferrer">View repository</a>
-          )}
-          {links.demo && (
-            <a class="button button--secondary" href={links.demo} rel="noreferrer">Open demo</a>
-          )}
-        </div>
-      )}
+      {
+        (links.repo || links.demo) && (
+          <div class="actions">
+            {links.repo && (
+              <a
+                class="button button--primary"
+                href={links.repo}
+                rel="noreferrer"
+              >
+                View repository
+              </a>
+            )}
+            {links.demo && (
+              <a
+                class="button button--secondary"
+                href={links.demo}
+                rel="noreferrer"
+              >
+                Open demo
+              </a>
+            )}
+          </div>
+        )
+      }
     </header>
 
-    {mediaItems.length > 0 && (
-      <section class="project-media" aria-label="Project media">
-        {mediaItems.map((item) => (
-          <MediaFrame
-            media={item.type === "youtube" && !item.title ? { ...item, title } : item}
-            variant="gallery"
-            caption={item.title}
-            loading="lazy"
-            controls
-          />
-        ))}
-      </section>
-    )}
+    {
+      mediaItems.length > 0 && (
+        <section class="project-media" aria-label="Project media">
+          {mediaItems.map((item) => (
+            <MediaFrame
+              media={
+                item.type === 'youtube' && !item.title
+                  ? { ...item, title }
+                  : item
+              }
+              variant="gallery"
+              caption={item.title}
+              loading="lazy"
+              controls
+            />
+          ))}
+        </section>
+      )
+    }
 
     <div class="project-detail__layout">
       <div class="project-detail__content prose">
@@ -73,28 +105,34 @@ const notes = highlights
           </div>
         </div>
 
-        {tags.length > 0 && (
-          <div>
-            <h3>Tools</h3>
-            <div class="tag-list" aria-label="Project tags">
-              {tags.map((tag) => <span class="badge">{tag}</span>)}
+        {
+          tags.length > 0 && (
+            <div>
+              <h3>Tools</h3>
+              <div class="tag-list" aria-label="Project tags">
+                {tags.map((tag) => (
+                  <span class="badge">{tag}</span>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )
+        }
 
-        {notes.length > 0 && (
-          <div>
-            <h3>Notes</h3>
-            <ul class="list">
-              {notes.map((note) => (
-                <li>
-                  {note.title && <strong>{note.title}: </strong>}
-                  {note.text}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        {
+          notes.length > 0 && (
+            <div>
+              <h3>Notes</h3>
+              <ul class="list">
+                {notes.map((note) => (
+                  <li>
+                    {note.title && <strong>{note.title}: </strong>}
+                    {note.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
       </aside>
     </div>
   </article>

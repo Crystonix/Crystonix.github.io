@@ -19,39 +19,73 @@ interface Props {
   cover?: MediaCover;
 }
 
-const { title, description, href, tags = [], category, status, cover } = Astro.props;
+const {
+  title,
+  description,
+  href,
+  tags = [],
+  category,
+  status,
+  cover,
+} = Astro.props;
 ---
 
 <article class="project-card">
-  {cover && (
-    <div class="project-card__cover">
-      <MediaFrame media={cover} variant="cover" loading="lazy" autoplay={cover.type === 'video'} controls={false} muted loop />
-    </div>
-  )}
+  {
+    cover && (
+      <div class="project-card__cover">
+        <MediaFrame
+          media={cover}
+          variant="cover"
+          loading="lazy"
+          autoplay={cover.type === 'video'}
+          controls={false}
+          muted
+          loop
+        />
+      </div>
+    )
+  }
 
-  {(category || status) && (
-    <div class="project-card__topline">
-      {category && <span>{category}</span>}
-      {status && <span>{status}</span>}
-    </div>
-  )}
+  {
+    (category || status) && (
+      <div class="project-card__topline">
+        {category && <span>{category}</span>}
+        {status && <span>{status}</span>}
+      </div>
+    )
+  }
 
   <h3>
-    {href ? (
-      <a href={href} class="project-card__title-link">{title}</a>
-    ) : (
-      <span class="project-card__title-link">{title}</span>
-    )}
+    {
+      href ? (
+        <a href={href} class="project-card__title-link">
+          {title}
+        </a>
+      ) : (
+        <span class="project-card__title-link">{title}</span>
+      )
+    }
   </h3>
   <p>{description}</p>
 
-  {tags.length > 0 && (
-    <div class="project-card__meta" aria-label="Project tags">
-      {tags.map((tag) => <span class="badge">{tag}</span>)}
-    </div>
-  )}
+  {
+    tags.length > 0 && (
+      <div class="project-card__meta" aria-label="Project tags">
+        {tags.map((tag) => (
+          <span class="badge">{tag}</span>
+        ))}
+      </div>
+    )
+  }
 
-  {href && <a class="project-card__link" href={href} aria-label={`View ${title}`}>View project →</a>}
+  {
+    href && (
+      <a class="project-card__link" href={href} aria-label={`View ${title}`}>
+        View project →
+      </a>
+    )
+  }
 </article>
 
 <style>
@@ -63,7 +97,11 @@ const { title, description, href, tags = [], category, status, cover } = Astro.p
     gap: 1rem;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025));
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.065),
+      rgba(255, 255, 255, 0.025)
+    );
     box-shadow: var(--shadow-card);
     padding: clamp(1.2rem, 3vw, 1.6rem);
   }
@@ -71,7 +109,8 @@ const { title, description, href, tags = [], category, status, cover } = Astro.p
   .project-card__cover {
     overflow: hidden;
     aspect-ratio: 16 / 10;
-    margin: calc(clamp(1.2rem, 3vw, 1.6rem) * -1) calc(clamp(1.2rem, 3vw, 1.6rem) * -1) 0;
+    margin: calc(clamp(1.2rem, 3vw, 1.6rem) * -1)
+      calc(clamp(1.2rem, 3vw, 1.6rem) * -1) 0;
     border-bottom: 1px solid var(--color-border);
     background: rgba(255, 255, 255, 0.04);
   }

@@ -1,13 +1,13 @@
-import type { CollectionEntry } from "astro:content";
-import { projectCategories } from "../data/projectCategories";
+import type { CollectionEntry } from 'astro:content';
+import { projectCategories } from '../data/projectCategories';
 
-type Project = CollectionEntry<"projects">;
+type Project = CollectionEntry<'projects'>;
 
 type HeroReelItem = {
   title: string;
   label: string;
   href: string;
-  cover: NonNullable<Project["data"]["cover"]>;
+  cover: NonNullable<Project['data']['cover']>;
 };
 
 export const sortProjects = (projects: Project[]) =>
@@ -39,6 +39,8 @@ export const groupProjectsByCategory = (projects: Project[]) =>
   projectCategories
     .map((category) => ({
       category,
-      projects: projects.filter((project) => project.data.category === category),
+      projects: projects.filter(
+        (project) => project.data.category === category,
+      ),
     }))
     .filter((group) => group.projects.length > 0);

@@ -29,7 +29,8 @@ const resumeSections = [
     <p class="eyebrow">Resume</p>
     <h1 class="page-title">Structured for proof, not filler.</h1>
     <p class="page-lead">
-      This page is ready for a resume-style profile that can link directly to projects and technical evidence.
+      This page is ready for a resume-style profile that can link directly to
+      projects and technical evidence.
     </p>
   </header>
 
@@ -40,12 +41,14 @@ const resumeSections = [
       description="Keep this page factual. Add specific experience, stack, and project evidence when ready."
     />
     <div class="card-grid">
-      {resumeSections.map((section) => (
-        <article class="card">
-          <h3>{section.title}</h3>
-          <p>{section.description}</p>
-        </article>
-      ))}
+      {
+        resumeSections.map((section) => (
+          <article class="card">
+            <h3>{section.title}</h3>
+            <p>{section.description}</p>
+          </article>
+        ))
+      }
     </div>
   </section>
 </BaseLayout>

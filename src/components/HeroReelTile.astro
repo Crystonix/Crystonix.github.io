@@ -1,8 +1,8 @@
 ---
-import MediaFrame from "./MediaFrame.astro";
+import MediaFrame from './MediaFrame.astro';
 
 type MediaCover = {
-  type: "image" | "video";
+  type: 'image' | 'video';
   src: string;
   alt?: string;
   position?: string;
@@ -15,19 +15,29 @@ interface Props {
   href: string;
   cover: MediaCover;
   featured?: boolean;
-  loading?: "eager" | "lazy";
+  loading?: 'eager' | 'lazy';
 }
 
-const { title, label, href, cover, featured = false, loading = "lazy" } = Astro.props;
+const {
+  title,
+  label,
+  href,
+  cover,
+  featured = false,
+  loading = 'lazy',
+} = Astro.props;
 ---
 
-<a class:list={["hero-reel-tile", featured && "hero-reel-tile--featured"]} href={href}>
+<a
+  class:list={['hero-reel-tile', featured && 'hero-reel-tile--featured']}
+  href={href}
+>
   <MediaFrame
     media={cover}
     variant="hero"
     decorative
     loading={loading}
-    autoplay={cover.type === "video"}
+    autoplay={cover.type === 'video'}
     controls={false}
     muted
     loop

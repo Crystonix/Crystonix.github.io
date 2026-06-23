@@ -12,7 +12,10 @@ const {
   title,
   description = 'Portfolio site for Crystonix: projects, experiments, games, and visual work.',
 } = Astro.props;
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://crystonix.github.io');
+const canonicalUrl = new URL(
+  Astro.url.pathname,
+  Astro.site ?? 'https://crystonix.github.io',
+);
 ---
 
 <!doctype html>

@@ -1,15 +1,15 @@
 ---
-import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import ProjectCard from "../../components/ProjectCard.astro";
-import SectionHeading from "../../components/SectionHeading.astro";
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
 import {
   getFeaturedProjects,
   groupProjectsByCategory,
   sortProjects,
-} from "../../lib/projectQueries";
+} from '../../lib/projectQueries';
 
-const projects = sortProjects(await getCollection("projects"));
+const projects = sortProjects(await getCollection('projects'));
 const featuredProjects = getFeaturedProjects(projects);
 const groupedProjects = groupProjectsByCategory(projects);
 ---
@@ -22,7 +22,8 @@ const groupedProjects = groupProjectsByCategory(projects);
     <p class="eyebrow">Projects</p>
     <h1 class="page-title">Projects, experiments, and visual work.</h1>
     <p class="page-lead">
-      A collection of things I’ve built, tested, designed, animated, or kept developing over time.
+      A collection of things I’ve built, tested, designed, animated, or kept
+      developing over time.
     </p>
   </header>
 
@@ -33,17 +34,19 @@ const groupedProjects = groupProjectsByCategory(projects);
       description="These pieces show the range of the portfolio: web work, game systems, visual experiments, and animation."
     />
     <div class="card-grid">
-      {featuredProjects.map((project) => (
-        <ProjectCard
-          title={project.data.title}
-          description={project.data.description}
-          href={`/projects/${project.id}/`}
-          tags={project.data.tags}
-          category={project.data.category}
-          status={project.data.status}
-          cover={project.data.cover}
-        />
-      ))}
+      {
+        featuredProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            href={`/projects/${project.id}/`}
+            tags={project.data.tags}
+            category={project.data.category}
+            status={project.data.status}
+            cover={project.data.cover}
+          />
+        ))
+      }
     </div>
   </section>
 
@@ -55,24 +58,33 @@ const groupedProjects = groupProjectsByCategory(projects);
     />
 
     <div class="project-groups">
-      {groupedProjects.map((group) => (
-        <section class="project-group" aria-labelledby={`${group.category.toLowerCase().replaceAll(" ", "-")}-title`}>
-          <h2 id={`${group.category.toLowerCase().replaceAll(" ", "-")}-title`}>{group.category}</h2>
-          <div class="card-grid">
-            {group.projects.map((project) => (
-              <ProjectCard
-                title={project.data.title}
-                description={project.data.description}
-                href={`/projects/${project.id}/`}
-                tags={project.data.tags}
-                category={project.data.category}
-                status={project.data.status}
-                cover={project.data.cover}
-              />
-            ))}
-          </div>
-        </section>
-      ))}
+      {
+        groupedProjects.map((group) => (
+          <section
+            class="project-group"
+            aria-labelledby={`${group.category.toLowerCase().replaceAll(' ', '-')}-title`}
+          >
+            <h2
+              id={`${group.category.toLowerCase().replaceAll(' ', '-')}-title`}
+            >
+              {group.category}
+            </h2>
+            <div class="card-grid">
+              {group.projects.map((project) => (
+                <ProjectCard
+                  title={project.data.title}
+                  description={project.data.description}
+                  href={`/projects/${project.id}/`}
+                  tags={project.data.tags}
+                  category={project.data.category}
+                  status={project.data.status}
+                  cover={project.data.cover}
+                />
+              ))}
+            </div>
+          </section>
+        ))
+      }
     </div>
   </section>
 </BaseLayout>

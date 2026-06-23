@@ -1,17 +1,17 @@
 ---
-import { getCollection } from "astro:content";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import SectionHeading from "../components/SectionHeading.astro";
-import { focusAreas, heroProjectIds, homeHero } from "../data/home";
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { focusAreas, heroProjectIds, homeHero } from '../data/home';
 import {
   getFeaturedProjects,
   getHeroReelItems,
   sortProjects,
-} from "../lib/projectQueries";
+} from '../lib/projectQueries';
 
-const projects = sortProjects(await getCollection("projects"));
+const projects = sortProjects(await getCollection('projects'));
 const featuredProjects = getFeaturedProjects(projects);
 const heroReelItems = getHeroReelItems(projects, heroProjectIds);
 ---
@@ -35,50 +35,65 @@ const heroReelItems = getHeroReelItems(projects, heroProjectIds);
     />
 
     <div class="card-grid">
-      {featuredProjects.map((project) => (
-        <ProjectCard
-          title={project.data.title}
-          description={project.data.description}
-          href={`/projects/${project.id}/`}
-          tags={project.data.tags}
-          category={project.data.category}
-          status={project.data.status}
-          cover={project.data.cover}
-        />
-      ))}
+      {
+        featuredProjects.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            href={`/projects/${project.id}/`}
+            tags={project.data.tags}
+            category={project.data.category}
+            status={project.data.status}
+            cover={project.data.cover}
+          />
+        ))
+      }
     </div>
   </section>
 
   <section class="section split" aria-labelledby="focus-title">
     <div>
       <p class="section__label">What I work on</p>
-      <h2 id="focus-title" class="section__title">I like building things that mix structure with visuals.</h2>
+      <h2 id="focus-title" class="section__title">
+        I like building things that mix structure with visuals.
+      </h2>
     </div>
 
     <div class="stack">
       <p class="section__description">
-        Some projects are practical web apps, some are Godot tools or prototypes, and some are visual scenes or animation work. This site collects the pieces I want to show, improve, and keep building on.
+        Some projects are practical web apps, some are Godot tools or
+        prototypes, and some are visual scenes or animation work. This site
+        collects the pieces I want to show, improve, and keep building on.
       </p>
       <div class="focus-list">
-        {focusAreas.map((area) => (
-          <article class="focus-item">
-            <h3>{area.title}</h3>
-            <p>{area.description}</p>
-          </article>
-        ))}
+        {
+          focusAreas.map((area) => (
+            <article class="focus-item">
+              <h3>{area.title}</h3>
+              <p>{area.description}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <section class="section card" aria-labelledby="explore-title">
     <p class="section__label">Explore</p>
-    <h2 id="explore-title" class="section__title">See the full project list.</h2>
+    <h2 id="explore-title" class="section__title">
+      See the full project list.
+    </h2>
     <p class="section__description">
-      Browse the full project list or visit GitHub for more experiments, older repositories, and work in progress.
+      Browse the full project list or visit GitHub for more experiments, older
+      repositories, and work in progress.
     </p>
     <div class="actions">
       <a class="button button--primary" href="/projects/">Open all projects</a>
-      <a class="button button--secondary" href="https://github.com/Crystonix" rel="noreferrer">View GitHub profile</a>
+      <a
+        class="button button--secondary"
+        href="https://github.com/Crystonix"
+        rel="noreferrer">View GitHub profile</a
+      >
     </div>
   </section>
 </BaseLayout>
