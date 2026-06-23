@@ -4,18 +4,28 @@ interface Props {
   description: string;
   href?: string;
   tags?: string[];
+  category?: string;
+  status?: string;
 }
 
-const { title, description, href, tags = [] } = Astro.props;
+const { title, description, href, tags = [], category, status } = Astro.props;
 ---
 
 <article class="project-card">
+  {(category || status) && (
+    <div class="project-card__topline">
+      {category && <span>{category}</span>}
+      {status && <span>{status}</span>}
+    </div>
+  )}
+
   {tags.length > 0 && (
     <div class="project-card__meta" aria-label="Project tags">
       {tags.map((tag) => <span class="badge">{tag}</span>)}
     </div>
   )}
+
   <h3>{title}</h3>
   <p>{description}</p>
-  {href && <a class="project-card__link" href={href}>Read more →</a>}
+  {href && <a class="project-card__link" href={href}>Read case study →</a>}
 </article>
