@@ -10,43 +10,40 @@ const featuredProjects = projects
   .filter((project) => project.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
 const visualProjects = projects
-  .filter((project) => project.data.category === 'Visual work')
+  .filter((project) => project.data.category === 'Visual Work')
   .sort((a, b) => a.data.order - b.data.order);
 
 const focusAreas = [
   {
-    title: 'Web products',
-    description:
-      'Portfolio platforms, login flows, content workflows, and small product foundations built for real use cases.',
+    title: 'Web Projects',
+    description: 'Interfaces, tools, and small platforms built for the browser.',
   },
   {
-    title: 'Game systems',
-    description:
-      'Godot projects, procedural generation, reusable project tools, and gameplay-facing prototypes.',
+    title: 'Game Systems',
+    description: 'Godot projects, procedural generation, plugins, and gameplay tools.',
   },
   {
-    title: 'Visual work',
-    description:
-      'Game art, Blender animation, browser-based 3D scenes, atmosphere, motion, and presentation work.',
+    title: 'Visual Work',
+    description: 'Game art, animation, 3D scenes, and motion experiments.',
   },
 ];
 ---
 
 <BaseLayout
-  title="Crystonix | Web, game, and visual work"
-  description="Portfolio of Crystonix: web products, Godot systems, procedural generation, game art, animation, and browser-based visual work."
+  title="Crystonix | Portfolio"
+  description="Portfolio of projects, experiments, games, and visual work by Crystonix."
 >
   <Hero
-    eyebrow="Web · Games · Visuals"
+    eyebrow="Projects · Experiments · Visuals"
     title="Crystonix"
-    lead="Selected work across web products, Godot systems, procedural generation, game art, animation, and browser-based 3D scenes."
+    lead="Projects, experiments, and visual work I’ve made while exploring web development, games, and interactive media."
   />
 
   <section class="section" aria-labelledby="featured-projects-title">
     <SectionHeading
       label="Featured work"
-      title="Projects selected for presentation, craft, and direction."
-      description="A concise selection of work that shows product thinking, game-system experiments, and visual production."
+      title="Things I’ve made and explored."
+      description="A mix of web projects, game systems, interactive scenes, and visual pieces."
     />
 
     <div class="card-grid">
@@ -65,13 +62,13 @@ const focusAreas = [
 
   <section class="section split" aria-labelledby="focus-title">
     <div>
-      <p class="section__label">Direction</p>
-      <h2 id="focus-title" class="section__title">A portfolio for web, games, and visual work.</h2>
+      <p class="section__label">What I work on</p>
+      <h2 id="focus-title" class="section__title">I like building things that mix structure with visuals.</h2>
     </div>
 
     <div class="stack">
       <p class="section__description">
-        The portfolio is intentionally split into three visible areas: web products, game systems, and visual work. That keeps the creative pieces visible instead of turning the site into a software-only project list.
+        Some projects are practical web apps, some are Godot tools or prototypes, and some are visual scenes or animation work. This site collects the pieces I want to show, improve, and keep building on.
       </p>
       <div class="focus-list">
         {focusAreas.map((area) => (
@@ -87,8 +84,8 @@ const focusAreas = [
   <section class="section" aria-labelledby="visual-work-title">
     <SectionHeading
       label="Visual work"
-      title="Game art, animation, and browser-based scenes."
-      description="This section gives the visual side of the portfolio its own space: game-art presentation, Blender animation, and interactive 3D atmosphere."
+      title="Game art, animation, and scenes."
+      description="Visual pieces get their own space here, from game-art presentation to Blender animation and browser-based 3D scenes."
     />
 
     <div class="card-grid">
@@ -107,9 +104,9 @@ const focusAreas = [
 
   <section class="section card" aria-labelledby="explore-title">
     <p class="section__label">Explore</p>
-    <h2 id="explore-title" class="section__title">Browse the full project selection.</h2>
+    <h2 id="explore-title" class="section__title">See the full project list.</h2>
     <p class="section__description">
-      The full index includes featured pieces, supporting prototypes, reusable Godot tools, and visual projects that can be expanded with screenshots, GIFs, renders, and process breakdowns.
+      Browse the full project list or visit GitHub for more experiments, older repositories, and work in progress.
     </p>
     <div class="actions">
       <a class="button button--primary" href="/projects/">Open all projects</a>
