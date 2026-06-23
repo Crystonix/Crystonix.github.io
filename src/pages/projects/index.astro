@@ -1,18 +1,17 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import ProjectCard from '../../components/ProjectCard.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import {
+  getFeaturedProjects,
+  groupProjectsByCategory,
+  sortProjects,
+} from "../../lib/projectQueries";
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
-const featuredProjects = projects.filter((project) => project.data.featured);
-const categories = ['Web Projects', 'Game Systems', 'Visual Work'];
-const groupedProjects = categories
-  .map((category) => ({
-    category,
-    projects: projects.filter((project) => project.data.category === category),
-  }))
-  .filter((group) => group.projects.length > 0);
+const projects = sortProjects(await getCollection("projects"));
+const featuredProjects = getFeaturedProjects(projects);
+const groupedProjects = groupProjectsByCategory(projects);
 ---
 
 <BaseLayout
@@ -57,8 +56,8 @@ const groupedProjects = categories
 
     <div class="project-groups">
       {groupedProjects.map((group) => (
-        <section class="project-group" aria-labelledby={`${group.category.toLowerCase().replaceAll(' ', '-')}-title`}>
-          <h2 id={`${group.category.toLowerCase().replaceAll(' ', '-')}-title`}>{group.category}</h2>
+        <section class="project-group" aria-labelledby={`${group.category.toLowerCase().replaceAll(" ", "-")}-title`}>
+          <h2 id={`${group.category.toLowerCase().replaceAll(" ", "-")}-title`}>{group.category}</h2>
           <div class="card-grid">
             {group.projects.map((project) => (
               <ProjectCard
@@ -77,3 +76,22 @@ const groupedProjects = categories
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .project-groups {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .project-group {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .project-group h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    letter-spacing: -0.04em;
+  }
+</style>
