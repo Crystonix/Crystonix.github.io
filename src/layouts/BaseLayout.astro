@@ -12,16 +12,20 @@ interface Props {
 const {
   title,
   description = 'Portfolio site for Crystonix: projects, experiments, games, and visual work.',
-  lang = 'en',
+  lang,
 } = Astro.props;
 const canonicalUrl = new URL(
   Astro.url.pathname,
   Astro.site ?? 'https://crystonix.github.io',
 );
+const isGermanRoute = ['/impressum/', '/datenschutz/'].some((path) =>
+  Astro.url.pathname.startsWith(path),
+);
+const documentLang = lang ?? (isGermanRoute ? 'de' : 'en');
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={documentLang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
