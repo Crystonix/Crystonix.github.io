@@ -1,7 +1,7 @@
 ---
 title: Artist Platform
-description: A portfolio and commission platform concept for digital artists, built around galleries, artist profiles, commission discovery, and a content-managed publishing workflow.
-category: Web products
+description: A portfolio and commission platform idea for digital artists, with space for galleries, artist profiles, commission information, and content editing.
+category: Web Projects
 status: In progress
 featured: true
 order: 1
@@ -13,19 +13,19 @@ tags:
   - Redis
   - Content workflow
 highlights:
-  - Designed around the needs of digital artists: portfolio presentation, galleries, commissions, and backoffice editing.
-  - Uses Astro for a fast public site and Directus for structured content management.
-  - Built as a foundation that can grow into commerce, identity, and richer media features.
+  - Built around the needs of digital artists: artwork presentation, galleries, commissions, and editing.
+  - Uses Astro for the public site and Directus for structured content management.
+  - Started as a foundation that can grow into richer artist and commission features.
 ---
 
-## Overview
+## About
 
-Artist Platform is a web product concept for digital artists who need more than a simple gallery page. It combines portfolio presentation, gallery publishing, commission discovery, and a backoffice workflow for keeping content manageable over time.
+Artist Platform is a web project for digital artists who need more than a simple gallery page. The idea is to bring artwork presentation, gallery publishing, commission information, and content editing into one place.
 
-## My focus
+## What I worked on
 
-The work focuses on shaping the product foundation: the public site, the content model, the editing workflow, and the separation between presentation and backoffice operations. Astro keeps the public-facing experience fast, while Directus supports structured content editing.
+I worked on the project foundation: the public-facing site, the content structure, the editing workflow, and the connection between the portfolio side and the backoffice side.
 
-## Why it matters
+## What I like about it
 
-The project shows how a creative portfolio product can be planned beyond a single landing page. It is still in progress, but it already has a clear direction: present artwork well, make commissions discoverable, and keep the editing workflow maintainable.
+This project is interesting to me because it combines creative presentation with practical web work. It is still in progress, but the direction is clear: make artwork easy to show, commissions easy to understand, and content easier to maintain.
