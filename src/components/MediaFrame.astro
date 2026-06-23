@@ -95,11 +95,10 @@ const shouldSyncMotion = media.type === 'video' && autoplay;
 {shouldSyncMotion && (
   <script>
     const setupMotionSafeVideos = () => {
-      /** @type {Window & { __crystonixMotionVideosReady?: boolean }} */
-      const motionWindow = window;
+      const root = document.documentElement;
 
-      if (motionWindow.__crystonixMotionVideosReady) return;
-      motionWindow.__crystonixMotionVideosReady = true;
+      if (root.dataset.crystonixMotionVideosReady === 'true') return;
+      root.dataset.crystonixMotionVideosReady = 'true';
 
       const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
       const syncVideos = () => {
