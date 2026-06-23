@@ -1,7 +1,7 @@
 ---
 title: Dungeon Quest
-description: A procedural dungeon prototype inspired by grotto-style maps, focused on generated layouts and tile-based dungeon presentation.
-category: Game systems
+description: A dungeon prototype inspired by grotto-style maps, with generated layouts and tile-based presentation.
+category: Game Systems
 status: Prototype
 featured: false
 order: 6
@@ -15,17 +15,17 @@ links:
 highlights:
   - Explores generated dungeon maps inspired by grotto-style level structures.
   - Connects procedural layout ideas with tile-based presentation.
-  - Supports the broader game-systems direction of the portfolio.
+  - Fits into the broader game and procedural-generation side of the portfolio.
 ---
 
-## Overview
+## About
 
-Dungeon Quest is a prototype around generated dungeon maps. The project explores how dungeon shapes can be produced and then represented through a tile-based game view.
+Dungeon Quest is a prototype around generated dungeon maps. It explores how dungeon shapes can be produced and then shown through a tile-based game view.
 
-## My focus
+## What I worked on
 
-The focus is on the relationship between generated layout data and playable dungeon presentation. It sits naturally beside the cave-generation work, but with a more game-facing prototype direction.
+I worked on the relationship between generated layout data and how that data appears in a playable dungeon space.
 
-## Why it matters
+## What I like about it
 
-This project is useful as part of the game-systems section. It should stay secondary until the implementation and visuals are documented more completely, but it helps show an ongoing interest in procedural level design.
+I like this project as part of the broader procedural-generation direction. It should stay secondary until the implementation and visuals are documented more completely, but it connects well with the cave-generation work.
