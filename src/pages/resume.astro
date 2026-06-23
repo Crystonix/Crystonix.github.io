@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const resumeSections = [
+  {
+    title: 'Profile',
+    description:
+      'Replace this with a concise professional summary once the target role, skills, and strongest evidence are finalized.',
+  },
+  {
+    title: 'Technical skills',
+    description:
+      'Add only tools and technologies you can confidently discuss, maintain, and demonstrate through projects.',
+  },
+  {
+    title: 'Selected work',
+    description:
+      'Link each meaningful project to a repository, demo, or portfolio case study with architecture and outcome notes.',
+  },
+];
+---
+
+<BaseLayout
+  title="Resume | Crystonix"
+  description="Resume page scaffold for the Crystonix portfolio."
+>
+  <header class="page-header">
+    <p class="eyebrow">Resume</p>
+    <h1 class="page-title">Structured for proof, not filler.</h1>
+    <p class="page-lead">
+      This page is ready for a resume-style profile that can link directly to projects and technical evidence.
+    </p>
+  </header>
+
+  <section class="section" aria-labelledby="resume-sections-title">
+    <SectionHeading
+      label="Sections"
+      title="Resume scaffold"
+      description="Keep this page factual. Add specific experience, stack, and project evidence when ready."
+    />
+    <div class="card-grid">
+      {resumeSections.map((section) => (
+        <article class="card">
+          <h3>{section.title}</h3>
+          <p>{section.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
