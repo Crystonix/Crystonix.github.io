@@ -7,7 +7,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.enum(['Web products', 'Game systems', 'Visual work']),
+    category: z.enum(['Web Projects', 'Game Systems', 'Visual Work']),
     status: z.string(),
     featured: z.boolean().default(false),
     order: z.number(),
