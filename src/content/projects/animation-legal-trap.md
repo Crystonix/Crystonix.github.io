@@ -7,8 +7,14 @@ featured: false
 order: 8
 cover:
   type: image
-  src: https://img.youtube.com/vi/ZsaZKan7WM0/hqdefault.jpg
-  alt: Thumbnail for The Legal Trap animation.
+  src: /projects/legal-trap/card.svg
+  alt: Stylized thumbnail for The Legal Trap animation.
+  position: center
+heroCover:
+  type: image
+  src: /projects/legal-trap/hero.svg
+  alt: Wide hero thumbnail for The Legal Trap animation.
+  position: center
 media:
   - type: youtube
     src: https://www.youtube.com/embed/ZsaZKan7WM0
