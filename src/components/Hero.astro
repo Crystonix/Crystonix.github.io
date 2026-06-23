@@ -1,14 +1,28 @@
 ---
+interface MediaCover {
+  type: 'image' | 'video' | 'youtube';
+  src: string;
+  alt?: string;
+}
+
+interface ReelItem {
+  title: string;
+  label: string;
+  href: string;
+  cover: MediaCover;
+}
+
 interface Props {
   eyebrow: string;
   title: string;
   lead: string;
+  reelItems?: ReelItem[];
 }
 
-const { eyebrow, title, lead } = Astro.props;
+const { eyebrow, title, lead, reelItems = [] } = Astro.props;
 ---
 
-<section class="hero" aria-labelledby="hero-title">
+<section class:list={['hero', reelItems.length > 0 && 'hero--with-reel']} aria-labelledby="hero-title">
   <div class="hero__content">
     <p class="eyebrow">{eyebrow}</p>
     <h1 id="hero-title">{title}</h1>
@@ -18,4 +32,46 @@ const { eyebrow, title, lead } = Astro.props;
       <a class="button button--secondary" href="https://github.com/Crystonix" rel="noreferrer">Open GitHub</a>
     </div>
   </div>
+
+  {reelItems.length > 0 && (
+    <aside class="hero__visual" aria-label="Selected visual work preview">
+      <div class="hero-reel">
+        {reelItems.map((item, index) => (
+          <a class={`hero-reel__item hero-reel__item--${index + 1}`} href={item.href} aria-label={`Open ${item.title}`}>
+            <div class="hero-reel__media">
+              {item.cover.type === 'video' ? (
+                <video src={item.cover.src} autoplay muted loop playsinline preload="metadata" data-hero-video></video>
+              ) : (
+                <img src={item.cover.src} alt={item.cover.alt ?? ''} loading={index === 0 ? 'eager' : 'lazy'} />
+              )}
+            </div>
+            <div class="hero-reel__overlay">
+              <span>{item.label}</span>
+              <strong>{item.title}</strong>
+            </div>
+          </a>
+        ))}
+      </div>
+    </aside>
+  )}
 </section>
+
+<script>
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const syncHeroVideos = () => {
+    document.querySelectorAll('[data-hero-video]').forEach((video) => {
+      if (!(video instanceof HTMLVideoElement)) return;
+
+      if (motionQuery.matches) {
+        video.pause();
+        video.removeAttribute('autoplay');
+        return;
+      }
+
+      video.play().catch(() => undefined);
+    });
+  };
+
+  syncHeroVideos();
+  motionQuery.addEventListener('change', syncHeroVideos);
+</script>
