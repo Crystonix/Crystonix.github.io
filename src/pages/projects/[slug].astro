@@ -18,24 +18,47 @@ const mediaItems = (media.length > 0 ? media : cover ? [cover] : []).map((item) 
   title: undefined,
   alt: undefined,
   poster: undefined,
+  position: undefined,
   ...item,
 }));
+
+const getStringField = (value: Record<string, unknown>, keys: string[]) => {
+  for (const key of keys) {
+    const field = value[key];
+
+    if (typeof field === 'string' && field.trim().length > 0) {
+      return field;
+    }
+  }
+
+  return null;
+};
 
 const formatHighlight = (highlight: unknown) => {
   if (typeof highlight === 'string') {
     return { title: null, text: highlight };
   }
 
-  if (
-    highlight &&
-    typeof highlight === 'object' &&
-    'text' in highlight &&
-    typeof highlight.text === 'string'
-  ) {
-    return {
-      title: 'title' in highlight && typeof highlight.title === 'string' ? highlight.title : null,
-      text: highlight.text,
-    };
+  if (highlight && typeof highlight === 'object') {
+    const value = highlight as Record<string, unknown>;
+    const title = getStringField(value, ['title', 'label', 'name']);
+    const text = getStringField(value, ['text', 'body', 'description', 'content', 'value']);
+
+    if (text) {
+      return { title, text };
+    }
+
+    const fallbackText = Object.entries(value)
+      .filter(([key]) => !['title', 'label', 'name'].includes(key))
+      .map(([, entry]) => {
+        if (typeof entry === 'string') return entry;
+        if (typeof entry === 'number' || typeof entry === 'boolean') return String(entry);
+        return null;
+      })
+      .filter(Boolean)
+      .join(' · ');
+
+    return { title, text: fallbackText || title || 'Project note' };
   }
 
   return { title: null, text: String(highlight) };
@@ -65,10 +88,17 @@ const formatHighlight = (highlight: unknown) => {
       <section class="project-media" aria-label="Project media">
         {mediaItems.map((item) => (
           <figure class="project-media__item">
-            {item.type === 'image' && <img src={item.src} alt={item.alt ?? ''} loading="lazy" />}
+            {item.type === 'image' && (
+              <img
+                src={item.src}
+                alt={item.alt ?? ''}
+                loading="lazy"
+                style={{ objectPosition: item.position ?? 'center' }}
+              />
+            )}
 
             {item.type === 'video' && (
-              <video controls playsinline preload="metadata" poster={item.poster}>
+              <video controls playsinline preload="metadata" poster={item.poster} style={{ objectPosition: item.position ?? 'center' }}>
                 <source src={item.src} />
                 Your browser does not support the video element.
               </video>
