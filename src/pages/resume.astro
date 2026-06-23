@@ -3,16 +3,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const skillGroups = [
   {
-    title: 'Web and content',
-    items: ['Astro', 'TypeScript', 'Directus', 'PostgreSQL', 'Redis'],
+    title: 'Web and content systems',
+    description: 'Portfolio pages, content workflows, deployment, and structured project presentation.',
+    items: ['Astro', 'TypeScript', 'Directus', 'PostgreSQL', 'Redis', 'GitHub Pages'],
   },
   {
-    title: 'Game and interactive',
-    items: ['Godot', 'GDScript', 'GDExtension', 'Procedural generation'],
+    title: 'Game and interactive systems',
+    description: 'Engine experiments, procedural layouts, plugin ideas, and visible rule-based prototypes.',
+    items: ['Godot', 'GDScript', 'C++', 'GDExtension', 'Procedural generation'],
   },
   {
-    title: 'Visual and 3D',
-    items: ['Three.js', 'WebGL', 'JavaScript', 'Particles', 'Game art'],
+    title: 'Visual and browser graphics',
+    description: '3D scenes, animated atmosphere, visual collections, and game-art presentation.',
+    items: ['Three.js', 'WebGL', 'Vite', 'JavaScript', 'Particles', 'Game art'],
   },
 ];
 
@@ -20,50 +23,50 @@ const selectedWork = [
   {
     title: 'Artist Platform',
     href: '/projects/artist-platform/',
-    label: 'Web Projects',
+    label: 'Web project',
     description:
-      'A web foundation for galleries, artist profile pages, content editing, and structured publishing workflows.',
+      'A foundation for artist pages, galleries, content editing, and structured publishing workflows.',
   },
   {
     title: 'Godot Dungeon Generation',
     href: '/projects/godot-dungeon-generation/',
-    label: 'Game Systems',
+    label: 'Game system',
     description:
-      'A procedural generation project that shapes cave-like layouts from grid data and repeated rule-based passes.',
+      'A procedural generation project that builds cave-like layouts from grid data and repeated rule passes.',
   },
   {
     title: 'Underwater Scene',
     href: '/projects/underwater-threejs-scene/',
-    label: 'Visual Work',
+    label: '3D scene',
     description:
-      'A browser-based 3D scene with terrain, lighting, camera movement, animated bubbles, and underwater atmosphere.',
+      'A browser-based scene focused on terrain, lighting, camera movement, animated bubbles, and atmosphere.',
   },
   {
     title: 'Game Art & Visuals',
     href: '/projects/game-art-visuals/',
-    label: 'Visual Work',
+    label: 'Visual work',
     description:
-      'A visual collection for game-art pieces, character presentation, scene composition, motion work, GIFs, and renders.',
+      'A visual collection for character presentation, scene composition, motion work, GIFs, and renders.',
   },
 ];
 
 const currentFocus = [
-  'Making project pages clearer and more personal.',
-  'Connecting web projects, game systems, and visual work in one portfolio.',
-  'Turning older work and current experiments into stronger case studies.',
+  'Make project pages clearer about what was built and why it matters.',
+  'Connect web projects, game systems, and visual work without treating them as separate portfolios.',
+  'Turn older work and current experiments into case studies that are easier to revisit and explain.',
 ];
 ---
 
 <BaseLayout
   title="Resume | Crystonix"
-  description="Project-based resume page for the Crystonix portfolio."
+  description="Project-backed resume page for the Crystonix portfolio."
 >
   <header class="page-header">
     <p class="eyebrow">Resume</p>
     <h1 class="page-title">A project-backed summary.</h1>
     <p class="page-lead">
-      A concise view of the tools, systems, and visual work represented in this
-      portfolio.
+      A concise view of the tools, systems, and visual work already represented
+      in this portfolio.
     </p>
   </header>
 
@@ -76,30 +79,35 @@ const currentFocus = [
     </div>
     <div class="prose">
       <p>
-        My work here sits between technical structure and visible results. Some
-        projects focus on web foundations and content workflows. Others explore
-        procedural game systems, browser graphics, or visual presentation.
+        My work here sits between structure and visible output. Some projects are
+        web foundations with content workflows. Others are game-system
+        experiments, browser graphics, or visual collections.
       </p>
       <p>
-        This page keeps the summary tied to projects that are already part of
-        the portfolio.
+        This page keeps the summary tied to project evidence instead of listing
+        tools without context.
       </p>
     </div>
   </section>
 
   <section class="section" aria-labelledby="resume-skills-title">
     <div class="section__header">
-      <p class="section__label">Skills</p>
+      <p class="section__label">Tools</p>
       <h2 id="resume-skills-title" class="section__title">
         Tools and areas shown by the projects.
       </h2>
+      <p class="section__description">
+        Grouped by where they appear in the portfolio, so the list reads as
+        evidence instead of a detached checklist.
+      </p>
     </div>
     <div class="card-grid">
       {
         skillGroups.map((group) => (
-          <article class="card">
+          <article class="card skill-card">
             <h3>{group.title}</h3>
-            <ul class="list">
+            <p>{group.description}</p>
+            <ul class="tool-list" aria-label={`${group.title} tools`}>
               {group.items.map((item) => (
                 <li>{item}</li>
               ))}
@@ -150,3 +158,31 @@ const currentFocus = [
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .skill-card {
+    display: grid;
+    align-content: start;
+    gap: 0.95rem;
+  }
+
+  .tool-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tool-list li {
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: rgba(125, 211, 252, 0.08);
+    color: var(--color-accent);
+    font-size: 0.82rem;
+    font-weight: 700;
+    line-height: 1.2;
+    padding: 0.35rem 0.65rem;
+  }
+</style>
