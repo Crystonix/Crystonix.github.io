@@ -1,5 +1,5 @@
 ---
-import HeroReelTile, { type HeroReelAspect } from './HeroReelTile.astro';
+import HeroReelTile from './HeroReelTile.astro';
 
 type MediaCover = {
   type: 'image' | 'video';
@@ -8,6 +8,8 @@ type MediaCover = {
   position?: string;
   poster?: string;
 };
+
+type HeroReelAspect = 'wide' | 'landscape' | 'portrait' | 'square';
 
 interface ReelItem {
   title: string;
