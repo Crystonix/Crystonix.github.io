@@ -1,4 +1,10 @@
 ---
+interface MediaCover {
+  type: 'image' | 'video' | 'youtube';
+  src: string;
+  alt?: string;
+}
+
 interface Props {
   title: string;
   description: string;
@@ -6,12 +12,23 @@ interface Props {
   tags?: string[];
   category?: string;
   status?: string;
+  cover?: MediaCover;
 }
 
-const { title, description, href, tags = [], category, status } = Astro.props;
+const { title, description, href, tags = [], category, status, cover } = Astro.props;
 ---
 
 <article class="project-card">
+  {cover && (
+    <div class="project-card__cover" aria-hidden={cover.alt ? undefined : 'true'}>
+      {cover.type === 'video' ? (
+        <video src={cover.src} autoplay muted loop playsinline preload="metadata"></video>
+      ) : (
+        <img src={cover.src} alt={cover.alt ?? ''} loading="lazy" />
+      )}
+    </div>
+  )}
+
   {(category || status) && (
     <div class="project-card__topline">
       {category && <span>{category}</span>}
