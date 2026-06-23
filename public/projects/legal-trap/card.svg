@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">The Legal Trap animation thumbnail</title>
+  <desc id="desc">A stylized cinematic thumbnail with a glowing frame, trap-like bars, and a central stage shape.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#070a12"/>
+      <stop offset="0.48" stop-color="#171022"/>
+      <stop offset="1" stop-color="#281019"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="58%">
+      <stop offset="0" stop-color="#f7c873" stop-opacity="0.42"/>
+      <stop offset="0.45" stop-color="#fb7185" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bars" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe8a3" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#7dd3fc" stop-opacity="0.25"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <circle cx="960" cy="130" r="190" fill="#38bdf8" opacity="0.12" filter="url(#soft)"/>
+  <circle cx="220" cy="630" r="250" fill="#fb7185" opacity="0.16" filter="url(#soft)"/>
+  <g opacity="0.22" stroke="#fff7ed" stroke-width="2">
+    <path d="M80 120h1040M80 680h1040"/>
+    <path d="M120 0v800M1080 0v800"/>
+  </g>
+  <g transform="translate(285 92) skewX(-7)" opacity="0.96">
+    <rect x="0" y="0" width="630" height="616" rx="42" fill="#050816" stroke="#f9d186" stroke-width="4" opacity="0.92"/>
+    <rect x="40" y="42" width="550" height="532" rx="28" fill="#0f172a" stroke="#7dd3fc" stroke-width="2" opacity="0.58"/>
+    <g fill="url(#bars)">
+      <rect x="92" y="38" width="26" height="540" rx="13"/>
+      <rect x="172" y="38" width="26" height="540" rx="13"/>
+      <rect x="252" y="38" width="26" height="540" rx="13"/>
+      <rect x="332" y="38" width="26" height="540" rx="13"/>
+      <rect x="412" y="38" width="26" height="540" rx="13"/>
+      <rect x="492" y="38" width="26" height="540" rx="13"/>
+    </g>
+    <path d="M315 172 505 486H125L315 172Z" fill="#f97316" opacity="0.28"/>
+    <path d="M315 210 462 462H168L315 210Z" fill="#0ea5e9" opacity="0.36"/>
+  </g>
+  <g transform="translate(96 594)">
+    <text x="0" y="0" fill="#7dd3fc" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="800" letter-spacing="5">ANIMATION</text>
+    <text x="0" y="58" fill="#edf2ff" font-family="Inter, Arial, sans-serif" font-size="74" font-weight="900" letter-spacing="-3">The Legal Trap</text>
+  </g>
+</svg>
