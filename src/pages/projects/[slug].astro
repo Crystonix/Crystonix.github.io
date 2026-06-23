@@ -41,22 +41,22 @@ const { title, description, category, status, tags, highlights, links } = projec
       </div>
 
       <aside class="project-detail__aside card" aria-label="Project summary">
-        <h2>Project summary</h2>
+        <h2>At a glance</h2>
 
         <div class="project-detail__meta-list">
           <div>
-            <span>Category</span>
+            <span>Area</span>
             <strong>{category}</strong>
           </div>
           <div>
-            <span>Status</span>
+            <span>Type</span>
             <strong>{status}</strong>
           </div>
         </div>
 
         {tags.length > 0 && (
           <div>
-            <h3>Stack / focus</h3>
+            <h3>Tools & focus</h3>
             <div class="project-card__meta" aria-label="Project tags">
               {tags.map((tag) => <span class="badge">{tag}</span>)}
             </div>
