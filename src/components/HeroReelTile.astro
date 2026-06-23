@@ -9,6 +9,8 @@ type MediaCover = {
   poster?: string;
 };
 
+export type HeroReelAspect = 'wide' | 'landscape' | 'portrait' | 'square';
+
 interface Props {
   title: string;
   label: string;
@@ -16,6 +18,7 @@ interface Props {
   cover: MediaCover;
   featured?: boolean;
   loading?: 'eager' | 'lazy';
+  aspect?: HeroReelAspect;
 }
 
 const {
@@ -25,11 +28,16 @@ const {
   cover,
   featured = false,
   loading = 'lazy',
+  aspect = 'wide',
 } = Astro.props;
 ---
 
 <a
-  class:list={['hero-reel-tile', featured && 'hero-reel-tile--featured']}
+  class:list={[
+    'hero-reel-tile',
+    `hero-reel-tile--${aspect}`,
+    featured && 'hero-reel-tile--featured',
+  ]}
   href={href}
 >
   <MediaFrame
@@ -54,11 +62,28 @@ const {
     position: relative;
     display: block;
     overflow: hidden;
-    min-height: 7.4rem;
+    min-height: 0;
+    aspect-ratio: var(--hero-reel-tile-aspect, 16 / 9);
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: clamp(1rem, 1.8vw, 1.45rem);
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+  }
+
+  .hero-reel-tile--wide {
+    --hero-reel-tile-aspect: 16 / 9;
+  }
+
+  .hero-reel-tile--landscape {
+    --hero-reel-tile-aspect: 4 / 3;
+  }
+
+  .hero-reel-tile--portrait {
+    --hero-reel-tile-aspect: 3 / 4;
+  }
+
+  .hero-reel-tile--square {
+    --hero-reel-tile-aspect: 1 / 1;
   }
 
   .hero-reel-tile:hover,
@@ -72,45 +97,61 @@ const {
     inset: 0;
     background: linear-gradient(
       180deg,
-      transparent 48%,
-      rgba(3, 5, 10, 0.54) 100%
+      transparent 58%,
+      rgba(3, 5, 10, 0.3) 100%
     );
     pointer-events: none;
   }
 
   .hero-reel-tile__label {
     position: absolute;
-    right: clamp(0.55rem, 1.2vw, 0.75rem);
-    bottom: clamp(0.55rem, 1.2vw, 0.75rem);
-    left: clamp(0.55rem, 1.2vw, 0.75rem);
+    right: clamp(0.55rem, 1.2vw, 0.8rem);
+    bottom: clamp(0.55rem, 1.2vw, 0.8rem);
+    left: clamp(0.55rem, 1.2vw, 0.8rem);
     display: grid;
-    gap: 0.08rem;
+    width: fit-content;
     max-width: calc(100% - 1.1rem);
-    padding: 0;
-    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.76);
+    gap: 0.24rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: clamp(0.7rem, 1.4vw, 1rem);
+    background: rgba(3, 5, 10, 0.68);
+    padding: clamp(0.46rem, 1vw, 0.66rem);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32);
+    backdrop-filter: blur(16px);
   }
 
   .hero-reel-tile__label span {
     width: fit-content;
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(125, 211, 252, 0.28);
     border-radius: 999px;
-    background: rgba(3, 5, 10, 0.46);
+    background: rgba(8, 47, 73, 0.78);
     color: var(--color-accent);
     font-size: 0.6rem;
     font-weight: 850;
     letter-spacing: 0.13em;
-    padding: 0.22rem 0.42rem;
+    padding: 0.24rem 0.48rem;
     text-transform: uppercase;
   }
 
   .hero-reel-tile__label strong {
+    width: fit-content;
+    max-width: 100%;
+    border-radius: 0.55rem;
+    background: rgba(255, 255, 255, 0.07);
     color: var(--color-text);
-    font-size: clamp(0.86rem, 1.35vw, 1.02rem);
-    line-height: 1.05;
+    font-size: clamp(0.84rem, 1.2vw, 0.98rem);
+    line-height: 1.08;
+    padding: 0.22rem 0.36rem;
     text-wrap: balance;
   }
 
   .hero-reel-tile--featured .hero-reel-tile__label strong {
-    font-size: clamp(1.1rem, 2vw, 1.45rem);
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  }
+
+  @media (max-width: 620px) {
+    .hero-reel-tile__label {
+      width: auto;
+    }
   }
 </style>
