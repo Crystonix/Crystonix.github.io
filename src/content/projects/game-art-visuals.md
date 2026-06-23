@@ -1,7 +1,7 @@
 ---
 title: Game Art & Visuals
-description: A visual-work entry for game-art assets, character presentation, scene composition, and motion pieces from the earlier portfolio direction.
-category: Visual work
+description: A place for game-art pieces, character presentation, scene composition, motion work, screenshots, GIFs, and renders.
+category: Visual Work
 status: Visual collection
 featured: true
 order: 7
@@ -12,19 +12,19 @@ tags:
   - Motion
   - Visual design
 highlights:
-  - Gives game-art and visual presentation first-class space in the portfolio.
-  - Connects creative assets with the broader Godot and animation work.
-  - Ready for screenshots, GIFs, renders, and process images once the media files are added.
+  - Gives the visual side of the portfolio its own space.
+  - Connects game projects with assets, presentation, and motion.
+  - Ready for screenshots, GIFs, renders, and process images.
 ---
 
-## Overview
+## About
 
-Game Art & Visuals is the portfolio space for visual game work: character presentation, scene composition, motion pieces, and the visual material that supports the game-development projects.
+Game Art & Visuals is where the visual side of the portfolio belongs: character work, game-art pieces, scene composition, motion tests, screenshots, GIFs, and renders.
 
-## My focus
+## What I want to show here
 
-This section is meant to show the visual side of the work rather than only the code behind it. It connects game systems with presentation: how assets look, how scenes are staged, and how motion communicates the idea of a project.
+This page is meant for work that is not only about code. It should show how game ideas look, how scenes are staged, how assets are presented, and how motion changes the feeling of a project.
 
-## What belongs here next
+## What comes next
 
-This page should receive the strongest screenshots, GIFs, renders, or process images from the earlier game-art work. The structure is now in place, but the media assets still need to be added to the repository before the page can become fully visual.
+The structure is ready, but the strongest media files still need to be added to the repository. Once the images and GIFs are in place, this page should become more visual and less text-heavy.
