@@ -1,31 +1,31 @@
 ---
 title: Dungeon Quest
-description: Procedural dungeon prototype inspired by Dragon Quest 9 grotto maps, using cellular-level generation ideas and tile mapping for dungeon rendering.
-category: Game development
+description: A procedural dungeon prototype inspired by grotto-style maps, focused on generated layouts and tile-based dungeon presentation.
+category: Game systems
 status: Prototype
 featured: false
 order: 6
 tags:
   - Godot
   - Procedural generation
-  - Tile mapping
+  - Tile maps
   - Game prototype
 links:
   repo: https://github.com/Crystonix/dungeon-quest
 highlights:
   - Explores generated dungeon maps inspired by grotto-style level structures.
-  - Uses cellular generation ideas as a foundation for dungeon shape creation.
-  - Good candidate for a future deeper write-up once the implementation is documented further.
+  - Connects procedural layout ideas with tile-based presentation.
+  - Supports the broader game-systems direction of the portfolio.
 ---
 
-## Project context
+## Overview
 
-Dungeon Quest is a prototype around procedural dungeon maps inspired by Dragon Quest 9 grotto structures. The project belongs in the portfolio as supporting context for the broader procedural-generation and Godot work.
+Dungeon Quest is a prototype around generated dungeon maps. The project explores how dungeon shapes can be produced and then represented through a tile-based game view.
 
-## Technical focus
+## My focus
 
-The main technical angle is dungeon generation at the cell and tile-map level. It sits naturally next to the cave-generation work, but it should be presented as a prototype until the implementation is documented in more detail.
+The focus is on the relationship between generated layout data and playable dungeon presentation. It sits naturally beside the cave-generation work, but with a more game-facing prototype direction.
 
-## Why it belongs here
+## Why it matters
 
-This project is worth listing because it reinforces the procedural-generation theme. It should not be the first project someone sees, but it is useful on the full projects page as a secondary candidate.
+This project is useful as part of the game-systems section. It should stay secondary until the implementation and visuals are documented more completely, but it helps show an ongoing interest in procedural level design.
