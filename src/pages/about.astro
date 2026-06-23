@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/prose.css';
 
 const focusAreas = [
   {
@@ -20,7 +21,7 @@ const focusAreas = [
 ];
 
 const workingStyle = [
-  'Start with a small working version before making the structure bigger.',
+  'Clean up naming, component boundaries, and content structure once the idea is working.',
   'Keep the project understandable enough to revisit later.',
   'Use project pages to explain context, process, and decisions.',
   'Keep older experiments visible when they still show a useful direction.',
@@ -91,38 +92,43 @@ const nextProjects = [
     </div>
   </section>
 
-  <section class="section split" aria-labelledby="about-process-title">
+  <section class="section section--prose split" aria-labelledby="about-process-title">
     <div>
       <p class="section__label">How I work</p>
       <h2 id="about-process-title" class="section__title">
         Make it work, then make it understandable.
       </h2>
     </div>
-    <div class="stack">
+    <div class="prose-stack">
       <p class="section__description">
         I like beginning with a small working version and then improving the
         structure around it: clearer naming, reusable components, separated
         content, and enough notes that the project can be picked up again.
       </p>
-      <ul class="list">
+      <ul class="prose-list">
         {workingStyle.map((item) => <li>{item}</li>)}
       </ul>
     </div>
   </section>
 
-  <section class="section card" aria-labelledby="about-next-title">
-    <p class="section__label">What I want to make more of</p>
-    <h2 id="about-next-title" class="section__title">
-      Things you can see, use, or play with.
-    </h2>
-    <div class="stack">
+  <section
+    class="section section--prose split"
+    aria-labelledby="about-next-title"
+  >
+    <div>
+      <p class="section__label">What I want to make more of</p>
+      <h2 id="about-next-title" class="section__title">
+        Things you can see, use, or play with.
+      </h2>
+    </div>
+    <div class="prose-stack surface--quiet">
       <p class="section__description">
         I want the next projects to feel less like isolated demos and more like
         small finished moments: something visual enough to remember, simple
         enough to try, and clear enough that another person can understand what
         changed between the first idea and the final page.
       </p>
-      <ul class="list">
+      <ul class="prose-list">
         {nextProjects.map((item) => <li>{item}</li>)}
       </ul>
     </div>
