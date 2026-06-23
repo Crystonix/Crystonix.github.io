@@ -1,32 +1,32 @@
 ---
-title: Animation / The Legal Trap
-description: Team Blender animation project focused on production workflow, modeling, animation, compositing, and organization.
-category: Graphics and creative tech
-status: Creative team project
+title: The Legal Trap
+description: A team Blender animation project covering visual production, modeling, animation, compositing, and project organization.
+category: Visual work
+status: Team animation
 featured: false
-order: 7
+order: 8
 tags:
   - Blender
   - Animation
   - Modeling
   - Compositing
-  - Production workflow
+  - Production
 links:
   repo: https://github.com/Crystonix/Animation
 highlights:
-  - Creative-production project rather than a pure software implementation.
-  - Useful for showing visual work, teamwork, and asset-production workflow.
-  - Needs screenshots or rendered video before it should become homepage-featured.
+  - Shows visual production work beyond code-only projects.
+  - Covers animation, modeling, compositing, and team coordination.
+  - Should become stronger once final renders and process images are added to the page.
 ---
 
-## Project context
+## Overview
 
-The Legal Trap is a team animation project. It is useful portfolio material because it shows creative production work alongside the software projects, especially if the final render, process shots, or role breakdown are added later.
+The Legal Trap is a team animation project made in Blender. It belongs in the portfolio because it shows visual production work next to the software and game-system projects.
 
-## Technical focus
+## My focus
 
-This project is less about application code and more about production workflow: modeling, animation, compositing, and coordination across a team project.
+The project involved parts of the production process around modeling, animation, compositing, and coordination. It represents creative teamwork and visual execution rather than a standalone software tool.
 
-## Current status
+## Why it matters
 
-Keep this as a secondary project until the page has visual media and a stronger breakdown of the exact work contributed.
+A portfolio with game and visual work should not only show code. This project adds production context and helps connect the programming side with animation, asset creation, and final presentation.
