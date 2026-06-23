@@ -1,8 +1,8 @@
 ---
 title: Artist Platform
-description: Static-first Astro platform architecture for digital artists, combining portfolio publishing, gallery management, commission intake, and a Directus-backed content workflow.
-category: Web applications
-status: Architecture foundation
+description: A portfolio and commission platform concept for digital artists, built around galleries, artist profiles, commission discovery, and a content-managed publishing workflow.
+category: Web products
+status: In progress
 featured: true
 order: 1
 tags:
@@ -11,23 +11,21 @@ tags:
   - Directus
   - PostgreSQL
   - Redis
-  - Domain modeling
+  - Content workflow
 highlights:
-  - Static-first Astro frontend with a content/backoffice architecture.
-  - Directus, PostgreSQL, and Redis local infrastructure for editorial and operational workflows.
-  - Explicit bounded contexts for site, portfolio, gallery, commissions, legal, media, and future commerce.
+  - Designed around the needs of digital artists: portfolio presentation, galleries, commissions, and backoffice editing.
+  - Uses Astro for a fast public site and Directus for structured content management.
+  - Built as a foundation that can grow into commerce, identity, and richer media features.
 ---
 
-## Project context
+## Overview
 
-Artist Platform is a platform foundation for digital artists who need more than a single gallery page. The architecture is designed around portfolio presentation, gallery publishing, commission discovery, and a backoffice workflow that can grow without coupling every concern into the public site.
+Artist Platform is a web product concept for digital artists who need more than a simple gallery page. It combines portfolio presentation, gallery publishing, commission discovery, and a backoffice workflow for keeping content manageable over time.
 
-## Technical focus
+## My focus
 
-The important part of this project is the separation of responsibilities. The Astro frontend remains static-first and presentation-focused, while Directus handles content operations and the supporting infrastructure is kept explicit through PostgreSQL and Redis.
+The work focuses on shaping the product foundation: the public site, the content model, the editing workflow, and the separation between presentation and backoffice operations. Astro keeps the public-facing experience fast, while Directus supports structured content editing.
 
-The project is especially useful as a portfolio case study because it shows architecture work: domain boundaries, documented non-goals, staging discipline, and a path for future commerce and identity features without prematurely building those systems.
+## Why it matters
 
-## Current status
-
-This should be presented as an architecture foundation and in-progress platform, not as a finished production product.
+The project shows how a creative portfolio product can be planned beyond a single landing page. It is still in progress, but it already has a clear direction: present artwork well, make commissions discoverable, and keep the editing workflow maintainable.
