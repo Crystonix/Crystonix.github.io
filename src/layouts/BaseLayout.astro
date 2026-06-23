@@ -10,7 +10,7 @@ interface Props {
 
 const {
   title,
-  description = 'Portfolio site for Crystonix: software projects, engineering notes, and technical work.',
+  description = 'Portfolio site for Crystonix: projects, experiments, games, and visual work.',
 } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://crystonix.github.io');
 ---
@@ -24,7 +24,6 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? 'https://crystoni
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
