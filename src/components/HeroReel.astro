@@ -56,7 +56,10 @@ const [featuredItem, ...supportingItems] = items;
 
       {
         supportingItems.length > 0 && (
-          <section class="hero-reel__supporting" aria-label="More project previews">
+          <section
+            class="hero-reel__supporting"
+            aria-label="More project previews"
+          >
             {supportingItems.map((item) => (
               <HeroReelTile
                 title={item.title}
@@ -86,8 +89,16 @@ const [featuredItem, ...supportingItems] = items;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: clamp(1.35rem, 2.6vw, 2rem);
     background:
-      radial-gradient(circle at 15% 0%, rgba(125, 211, 252, 0.16), transparent 34%),
-      radial-gradient(circle at 88% 14%, rgba(14, 165, 233, 0.12), transparent 36%),
+      radial-gradient(
+        circle at 15% 0%,
+        rgba(125, 211, 252, 0.16),
+        transparent 34%
+      ),
+      radial-gradient(
+        circle at 88% 14%,
+        rgba(14, 165, 233, 0.12),
+        transparent 36%
+      ),
       rgba(8, 13, 24, 0.64);
     box-shadow:
       0 34px 90px rgba(0, 0, 0, 0.34),
