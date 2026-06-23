@@ -38,7 +38,10 @@ const {
 const [featuredItem, ...supportingItems] = items;
 ---
 
-<aside class:list={['hero-reel-shell', `hero-reel-shell--${variant}`]} aria-label={label}>
+<aside
+  class:list={['hero-reel-shell', `hero-reel-shell--${variant}`]}
+  aria-label={label}
+>
   <div class="hero-reel-stage">
     <div class:list={['hero-reel', `hero-reel--${variant}`]}>
       {
