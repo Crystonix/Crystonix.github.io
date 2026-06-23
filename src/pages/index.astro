@@ -13,6 +13,27 @@ const visualProjects = projects
   .filter((project) => project.data.category === 'Visual Work')
   .sort((a, b) => a.data.order - b.data.order);
 
+const heroProjectIds = [
+  'game-art-visuals',
+  'underwater-threejs-scene',
+  'godot-dungeon-generation',
+  'animation-legal-trap',
+];
+const heroReelItems = [];
+
+for (const id of heroProjectIds) {
+  const project = projects.find((entry) => entry.id === id);
+
+  if (project?.data.cover) {
+    heroReelItems.push({
+      title: project.data.title,
+      label: project.data.category,
+      href: `/projects/${project.id}/`,
+      cover: project.data.cover,
+    });
+  }
+}
+
 const focusAreas = [
   {
     title: 'Web Projects',
@@ -37,6 +58,7 @@ const focusAreas = [
     eyebrow="Projects · Experiments · Visuals"
     title="Crystonix"
     lead="Projects, experiments, and visual work I’ve made while exploring web development, games, and interactive media."
+    reelItems={heroReelItems}
   />
 
   <section class="section" aria-labelledby="featured-projects-title">
