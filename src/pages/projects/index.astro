@@ -1,51 +1,77 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 
-const projectSlots = [
-  {
-    title: 'Portfolio foundation',
-    description:
-      'Astro portfolio deployed through GitHub Actions to GitHub Pages. This is the baseline for future project write-ups.',
-    tags: ['Astro', 'pnpm', 'GitHub Actions'],
-  },
-  {
-    title: 'Case study slot',
-    description:
-      'Reserve this card for a real project once its repository, problem statement, architecture, and outcome are ready to document.',
-    tags: ['Coming next'],
-  },
-  {
-    title: 'Technical note slot',
-    description:
-      'Use this space for smaller engineering notes: deployment lessons, architecture choices, or focused implementation details.',
-    tags: ['Notes'],
-  },
-];
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const featuredProjects = projects.filter((project) => project.data.featured);
+const categories = ['Web applications', 'Game development', 'Tooling', 'Graphics and creative tech'];
+const groupedProjects = categories
+  .map((category) => ({
+    category,
+    projects: projects.filter((project) => project.data.category === category),
+  }))
+  .filter((group) => group.projects.length > 0);
 ---
 
 <BaseLayout
   title="Projects | Crystonix"
-  description="Project and case-study index for the Crystonix portfolio."
+  description="Curated project index for Crystonix: web applications, Godot systems, tooling, and creative technology work."
 >
   <header class="page-header">
     <p class="eyebrow">Projects</p>
-    <h1 class="page-title">Work worth documenting.</h1>
+    <h1 class="page-title">Curated technical work.</h1>
     <p class="page-lead">
-      This page is ready for real project case studies. Each finished write-up should explain the problem,
-      architecture, implementation decisions, and result.
+      A selected project index built from typed Markdown entries. Each project has a dedicated page for context, technical focus, and links.
     </p>
   </header>
 
-  <section class="section" aria-labelledby="project-index-title">
+  <section class="section" aria-labelledby="featured-index-title">
     <SectionHeading
-      label="Index"
-      title="Project slots"
-      description="These are intentionally honest placeholders until full case studies are added."
+      label="Featured"
+      title="The strongest portfolio candidates."
+      description="These are the projects currently suitable for the homepage because they have the clearest technical story or product architecture."
     />
     <div class="card-grid">
-      {projectSlots.map((project) => <ProjectCard {...project} />)}
+      {featuredProjects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          href={`/projects/${project.id}/`}
+          tags={project.data.tags}
+          category={project.data.category}
+          status={project.data.status}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="all-projects-title">
+    <SectionHeading
+      label="Index"
+      title="All displayed projects."
+      description="Secondary projects are included when they add useful context, but the homepage remains intentionally selective."
+    />
+
+    <div class="project-groups">
+      {groupedProjects.map((group) => (
+        <section class="project-group" aria-labelledby={`${group.category.toLowerCase().replaceAll(' ', '-')}-title`}>
+          <h2 id={`${group.category.toLowerCase().replaceAll(' ', '-')}-title`}>{group.category}</h2>
+          <div class="card-grid">
+            {group.projects.map((project) => (
+              <ProjectCard
+                title={project.data.title}
+                description={project.data.description}
+                href={`/projects/${project.id}/`}
+                tags={project.data.tags}
+                category={project.data.category}
+                status={project.data.status}
+              />
+            ))}
+          </div>
+        </section>
+      ))}
     </div>
   </section>
 </BaseLayout>
