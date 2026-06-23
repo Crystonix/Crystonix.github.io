@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+
+const projectSlots = [
+  {
+    title: 'Portfolio foundation',
+    description:
+      'Astro portfolio deployed through GitHub Actions to GitHub Pages. This is the baseline for future project write-ups.',
+    tags: ['Astro', 'pnpm', 'GitHub Actions'],
+  },
+  {
+    title: 'Case study slot',
+    description:
+      'Reserve this card for a real project once its repository, problem statement, architecture, and outcome are ready to document.',
+    tags: ['Coming next'],
+  },
+  {
+    title: 'Technical note slot',
+    description:
+      'Use this space for smaller engineering notes: deployment lessons, architecture choices, or focused implementation details.',
+    tags: ['Notes'],
+  },
+];
+---
+
+<BaseLayout
+  title="Projects | Crystonix"
+  description="Project and case-study index for the Crystonix portfolio."
+>
+  <header class="page-header">
+    <p class="eyebrow">Projects</p>
+    <h1 class="page-title">Work worth documenting.</h1>
+    <p class="page-lead">
+      This page is ready for real project case studies. Each finished write-up should explain the problem,
+      architecture, implementation decisions, and result.
+    </p>
+  </header>
+
+  <section class="section" aria-labelledby="project-index-title">
+    <SectionHeading
+      label="Index"
+      title="Project slots"
+      description="These are intentionally honest placeholders until full case studies are added."
+    />
+    <div class="card-grid">
+      {projectSlots.map((project) => <ProjectCard {...project} />)}
+    </div>
+  </section>
+</BaseLayout>
