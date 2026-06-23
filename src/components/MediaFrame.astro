@@ -92,36 +92,38 @@ const shouldSyncMotion = media.type === 'video' && autoplay;
   {caption && <figcaption>{caption}</figcaption>}
 </figure>
 
-{shouldSyncMotion && (
-  <script>
-    const setupMotionSafeVideos = () => {
-      const root = document.documentElement;
+<script>
+  const setupMotionSafeVideos = () => {
+    const root = document.documentElement;
 
-      if (root.dataset.crystonixMotionVideosReady === 'true') return;
-      root.dataset.crystonixMotionVideosReady = 'true';
+    if (root.dataset.crystonixMotionVideosReady === 'true') return;
 
-      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-      const syncVideos = () => {
-        document.querySelectorAll('[data-motion-video]').forEach((video) => {
-          if (!(video instanceof HTMLVideoElement)) return;
+    const videos = document.querySelectorAll('[data-motion-video]');
+    if (videos.length === 0) return;
 
-          if (motionQuery.matches) {
-            video.pause();
-            video.removeAttribute('autoplay');
-            return;
-          }
+    root.dataset.crystonixMotionVideosReady = 'true';
 
-          video.play().catch(() => undefined);
-        });
-      };
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const syncVideos = () => {
+      videos.forEach((video) => {
+        if (!(video instanceof HTMLVideoElement)) return;
 
-      syncVideos();
-      motionQuery.addEventListener('change', syncVideos);
+        if (motionQuery.matches) {
+          video.pause();
+          video.removeAttribute('autoplay');
+          return;
+        }
+
+        video.play().catch(() => undefined);
+      });
     };
 
-    setupMotionSafeVideos();
-  </script>
-)}
+    syncVideos();
+    motionQuery.addEventListener('change', syncVideos);
+  };
+
+  setupMotionSafeVideos();
+</script>
 
 <style>
   .media-frame {
@@ -183,15 +185,9 @@ const shouldSyncMotion = media.type === 'video' && autoplay;
     height: 100%;
   }
 
-  .media-frame--hero img,
-  .media-frame--hero video {
-    filter: saturate(1.08) contrast(1.06);
-  }
-
   figcaption {
-    border-top: 1px solid var(--color-border);
+    padding: 0.95rem 1rem 1.05rem;
     color: var(--color-muted);
-    font-size: 0.95rem;
-    padding: 0.85rem 1rem;
+    font-size: 0.9rem;
   }
 </style>
