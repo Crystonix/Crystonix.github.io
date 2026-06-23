@@ -1,13 +1,13 @@
 ---
-import MediaFrame from './MediaFrame.astro';
+import HeroReel from "./HeroReel.astro";
 
-interface MediaCover {
-  type: 'image' | 'video';
+type MediaCover = {
+  type: "image" | "video";
   src: string;
   alt?: string;
   position?: string;
   poster?: string;
-}
+};
 
 interface ReelItem {
   title: string;
@@ -26,42 +26,27 @@ interface Props {
 const { eyebrow, title, lead, reelItems = [] } = Astro.props;
 ---
 
-<section class:list={['hero', reelItems.length > 0 && 'hero--with-reel']} aria-labelledby="hero-title">
+<section
+  class:list={["hero", reelItems.length > 0 && "hero--with-reel"]}
+  aria-labelledby="hero-title"
+>
   <div class="hero__content">
     <p class="eyebrow">{eyebrow}</p>
     <h1 id="hero-title">{title}</h1>
     <p class="hero__lead">{lead}</p>
     <div class="hero__actions">
       <a class="button button--primary" href="/projects/">View projects</a>
-      <a class="button button--secondary" href="https://github.com/Crystonix" rel="noreferrer">Open GitHub</a>
+      <a
+        class="button button--secondary"
+        href="https://github.com/Crystonix"
+        rel="noreferrer"
+      >
+        Open GitHub
+      </a>
     </div>
   </div>
 
-  {reelItems.length > 0 && (
-    <aside class="hero-reel-shell" aria-label="Selected visual work preview">
-      <div class="hero-reel">
-        {reelItems.map((item, index) => (
-          <a class={`hero-reel__item hero-reel__item--${index + 1}`} href={item.href}>
-            <MediaFrame
-              media={item.cover}
-              variant="hero"
-              decorative
-              loading={index === 0 ? 'eager' : 'lazy'}
-              autoplay={item.cover.type === 'video'}
-              controls={false}
-              muted
-              loop
-            />
-            <div class="hero-reel__scrim" aria-hidden="true"></div>
-            <div class="hero-reel__label">
-              <span>{item.label}</span>
-              <strong>{item.title}</strong>
-            </div>
-          </a>
-        ))}
-      </div>
-    </aside>
-  )}
+  {reelItems.length > 0 && <HeroReel items={reelItems} />}
 </section>
 
 <style>
@@ -106,124 +91,15 @@ const { eyebrow, title, lead, reelItems = [] } = Astro.props;
     margin-top: 1.8rem;
   }
 
-  .hero-reel-shell {
-    position: relative;
-    isolation: isolate;
-    min-height: clamp(22rem, 40vw, 32rem);
-  }
-
-  .hero-reel {
-    display: grid;
-    min-height: inherit;
-    grid-template-columns: minmax(0, 1.55fr) minmax(11rem, 0.95fr);
-    grid-template-rows: repeat(3, minmax(0, 1fr));
-    gap: clamp(0.7rem, 1.2vw, 0.95rem);
-  }
-
-  .hero-reel__item {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    min-height: 7.4rem;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: clamp(1rem, 1.8vw, 1.45rem);
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
-  }
-
-  .hero-reel__item--1 {
-    grid-column: 1 / 2;
-    grid-row: 1 / 4;
-  }
-
-  .hero-reel__item--2 {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-  }
-
-  .hero-reel__item--3 {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-  }
-
-  .hero-reel__item--4 {
-    grid-column: 2 / 3;
-    grid-row: 3 / 4;
-  }
-
-  .hero-reel__scrim {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 48%, rgba(3, 5, 10, 0.54) 100%);
-    pointer-events: none;
-  }
-
-  .hero-reel__label {
-    position: absolute;
-    right: clamp(0.55rem, 1.2vw, 0.75rem);
-    bottom: clamp(0.55rem, 1.2vw, 0.75rem);
-    left: clamp(0.55rem, 1.2vw, 0.75rem);
-    display: grid;
-    gap: 0.08rem;
-    max-width: calc(100% - 1.1rem);
-    padding: 0;
-    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.76);
-  }
-
-  .hero-reel__label span {
-    width: fit-content;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: 999px;
-    background: rgba(3, 5, 10, 0.46);
-    color: var(--color-accent);
-    font-size: 0.6rem;
-    font-weight: 850;
-    letter-spacing: 0.13em;
-    padding: 0.22rem 0.42rem;
-    text-transform: uppercase;
-  }
-
-  .hero-reel__label strong {
-    color: var(--color-text);
-    font-size: clamp(0.86rem, 1.35vw, 1.02rem);
-    line-height: 1.05;
-    text-wrap: balance;
-  }
-
-  .hero-reel__item--1 .hero-reel__label strong {
-    font-size: clamp(1.1rem, 2vw, 1.45rem);
-  }
-
   @media (max-width: 960px) {
     .hero--with-reel {
       grid-template-columns: 1fr;
-    }
-
-    .hero-reel-shell {
-      min-height: clamp(24rem, 68vw, 34rem);
     }
   }
 
   @media (max-width: 620px) {
     .hero {
       padding-top: clamp(2.5rem, 10vw, 3.5rem);
-    }
-
-    .hero-reel {
-      min-height: auto;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      grid-template-rows: none;
-    }
-
-    .hero-reel__item {
-      min-height: 9.5rem;
-      grid-column: auto;
-      grid-row: auto;
-    }
-
-    .hero-reel__item--1 {
-      min-height: 14rem;
-      grid-column: span 2;
     }
   }
 </style>
