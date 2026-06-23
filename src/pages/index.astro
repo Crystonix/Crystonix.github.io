@@ -4,21 +4,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
+import { focusAreas, heroProjectIds, homeHero } from '../data/home';
 
-const projects = await getCollection('projects');
-const featuredProjects = projects
-  .filter((project) => project.data.featured)
-  .sort((a, b) => a.data.order - b.data.order);
-const visualProjects = projects
-  .filter((project) => project.data.category === 'Visual Work')
-  .sort((a, b) => a.data.order - b.data.order);
-
-const heroProjectIds = [
-  'game-art-visuals',
-  'underwater-threejs-scene',
-  'godot-dungeon-generation',
-  'animation-legal-trap',
-];
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const featuredProjects = projects.filter((project) => project.data.featured);
+const visualProjects = projects.filter((project) => project.data.category === 'Visual Work');
 const heroReelItems = [];
 
 for (const id of heroProjectIds) {
@@ -34,21 +24,6 @@ for (const id of heroProjectIds) {
     });
   }
 }
-
-const focusAreas = [
-  {
-    title: 'Web Projects',
-    description: 'Interfaces, tools, and small platforms built for the browser.',
-  },
-  {
-    title: 'Game Systems',
-    description: 'Godot projects, procedural generation, plugins, and gameplay tools.',
-  },
-  {
-    title: 'Visual Work',
-    description: 'Game art, animation, 3D scenes, and motion experiments.',
-  },
-];
 ---
 
 <BaseLayout
@@ -56,9 +31,9 @@ const focusAreas = [
   description="Portfolio of projects, experiments, games, and visual work by Crystonix."
 >
   <Hero
-    eyebrow="Projects · Experiments · Visuals"
-    title="Crystonix"
-    lead="Projects, experiments, and visual work I’ve made while exploring web development, games, and interactive media."
+    eyebrow={homeHero.eyebrow}
+    title={homeHero.title}
+    lead={homeHero.lead}
     reelItems={heroReelItems}
   />
 
