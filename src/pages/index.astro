@@ -1,17 +1,89 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
 
+const focusAreas = [
+  {
+    title: 'Portfolio foundation',
+    description:
+      'A clean Astro and GitHub Pages setup for publishing project write-ups, technical notes, and a public engineering profile.',
+    tags: ['Astro', 'GitHub Pages', 'Static site'],
+    href: '/projects/',
+  },
+  {
+    title: 'Project case studies',
+    description:
+      'A dedicated space for documenting completed work with goals, architecture decisions, implementation notes, and outcomes.',
+    tags: ['Architecture', 'Case studies'],
+    href: '/projects/',
+  },
+  {
+    title: 'Engineering notes',
+    description:
+      'A place for concise technical notes, deployment learnings, and implementation decisions worth keeping long term.',
+    tags: ['Notes', 'Systems'],
+    href: '/about/',
+  },
+];
+
+const principles = [
+  'Prefer simple, durable systems over avoidable complexity.',
+  'Keep deployment reproducible and source-controlled.',
+  'Document technical decisions so future changes are easier to make safely.',
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Crystonix | Portfolio"
+  description="Crystonix portfolio site for software projects, engineering notes, and technical work."
+>
+  <Hero
+    eyebrow="Astro portfolio · GitHub Pages"
+    title="Crystonix"
+    lead="A focused portfolio for software projects, engineering decisions, and technical work published from a clean Astro foundation."
+  />
+
+  <section class="section" aria-labelledby="work-title">
+    <SectionHeading
+      label="Current direction"
+      title="A portfolio built to grow with the work."
+      description="The site is structured as a long-term home for project write-ups, technical documentation, and practical engineering notes."
+    />
+
+    <div class="card-grid">
+      {focusAreas.map((item) => <ProjectCard {...item} />)}
+    </div>
+  </section>
+
+  <section class="section split" aria-labelledby="approach-title">
+    <div>
+      <p class="section__label">Approach</p>
+      <h2 id="approach-title" class="section__title">Clean foundations first.</h2>
+    </div>
+
+    <div class="stack">
+      <p class="section__description">
+        This portfolio starts with a static, low-maintenance architecture: Astro for the site,
+        pnpm for dependency management, and GitHub Actions for deployment to GitHub Pages.
+      </p>
+      <ul class="list">
+        {principles.map((principle) => <li>{principle}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section card" aria-labelledby="next-title">
+    <p class="section__label">Next</p>
+    <h2 id="next-title" class="section__title">Add real project content as separate case studies.</h2>
+    <p class="section__description">
+      The next clean step is to turn each meaningful GitHub project into a dedicated write-up
+      with problem context, architecture, trade-offs, and links to the repository or demo.
+    </p>
+    <div class="actions">
+      <a class="button button--primary" href="/projects/">Open projects</a>
+      <a class="button button--secondary" href="https://github.com/Crystonix" rel="noreferrer">View GitHub profile</a>
+    </div>
+  </section>
+</BaseLayout>
