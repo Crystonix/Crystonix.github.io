@@ -1,29 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/Hero.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import { focusAreas, heroProjectIds, homeHero } from '../data/home';
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import SectionHeading from "../components/SectionHeading.astro";
+import { focusAreas, heroProjectIds, homeHero } from "../data/home";
+import {
+  getFeaturedProjects,
+  getHeroReelItems,
+  sortProjects,
+} from "../lib/projectQueries";
 
-const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
-const featuredProjects = projects.filter((project) => project.data.featured);
-const visualProjects = projects.filter((project) => project.data.category === 'Visual Work');
-const heroReelItems = [];
-
-for (const id of heroProjectIds) {
-  const project = projects.find((entry) => entry.id === id);
-  const cover = project?.data.heroCover ?? project?.data.cover;
-
-  if (project && cover) {
-    heroReelItems.push({
-      title: project.data.title,
-      label: project.data.category,
-      href: `/projects/${project.id}/`,
-      cover,
-    });
-  }
-}
+const projects = sortProjects(await getCollection("projects"));
+const featuredProjects = getFeaturedProjects(projects);
+const heroReelItems = getHeroReelItems(projects, heroProjectIds);
 ---
 
 <BaseLayout
@@ -77,28 +67,6 @@ for (const id of heroProjectIds) {
           </article>
         ))}
       </div>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="visual-work-title">
-    <SectionHeading
-      label="Visual work"
-      title="Game art, animation, and scenes."
-      description="Visual pieces get their own space here, from game-art presentation to Blender animation and browser-based 3D scenes."
-    />
-
-    <div class="card-grid">
-      {visualProjects.map((project) => (
-        <ProjectCard
-          title={project.data.title}
-          description={project.data.description}
-          href={`/projects/${project.id}/`}
-          tags={project.data.tags}
-          category={project.data.category}
-          status={project.data.status}
-          cover={project.data.cover}
-        />
-      ))}
     </div>
   </section>
 
