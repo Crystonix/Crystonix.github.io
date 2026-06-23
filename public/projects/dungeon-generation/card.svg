@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Godot dungeon generation thumbnail</title>
+  <desc id="desc">A stylized cellular automata cave-generation thumbnail with noisy grid cells forming a dungeon shape.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#020617"/>
+      <stop offset="0.52" stop-color="#071527"/>
+      <stop offset="1" stop-color="#092f35"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="55%" cy="44%" r="65%">
+      <stop offset="0" stop-color="#7dd3fc" stop-opacity="0.28"/>
+      <stop offset="0.42" stop-color="#22c55e" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#7dd3fc" stroke-opacity="0.12" stroke-width="1"/>
+    </pattern>
+    <filter id="soft" x="-25%" y="-25%" width="150%" height="150%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect width="1200" height="800" fill="url(#glow)"/>
+  <rect width="1200" height="800" fill="url(#grid)"/>
+  <g transform="translate(224 88)" opacity="0.98">
+    <g fill="#0f172a" stroke="#164e63" stroke-width="2">
+      <rect x="96" y="0" width="96" height="96" rx="18"/>
+      <rect x="192" y="0" width="96" height="96" rx="18"/>
+      <rect x="384" y="0" width="96" height="96" rx="18"/>
+      <rect x="480" y="96" width="96" height="96" rx="18"/>
+      <rect x="0" y="192" width="96" height="96" rx="18"/>
+      <rect x="576" y="192" width="96" height="96" rx="18"/>
+      <rect x="96" y="384" width="96" height="96" rx="18"/>
+      <rect x="480" y="480" width="96" height="96" rx="18"/>
+    </g>
+    <g fill="#7dd3fc" opacity="0.9">
+      <rect x="96" y="96" width="96" height="96" rx="20"/>
+      <rect x="192" y="96" width="96" height="96" rx="20"/>
+      <rect x="288" y="96" width="96" height="96" rx="20"/>
+      <rect x="384" y="96" width="96" height="96" rx="20"/>
+      <rect x="96" y="192" width="96" height="96" rx="20"/>
+      <rect x="288" y="192" width="96" height="96" rx="20"/>
+      <rect x="384" y="192" width="96" height="96" rx="20"/>
+      <rect x="480" y="192" width="96" height="96" rx="20"/>
+      <rect x="96" y="288" width="96" height="96" rx="20"/>
+      <rect x="192" y="288" width="96" height="96" rx="20"/>
+      <rect x="288" y="288" width="96" height="96" rx="20"/>
+      <rect x="384" y="288" width="96" height="96" rx="20"/>
+      <rect x="192" y="384" width="96" height="96" rx="20"/>
+      <rect x="288" y="384" width="96" height="96" rx="20"/>
+      <rect x="384" y="384" width="96" height="96" rx="20"/>
+      <rect x="288" y="480" width="96" height="96" rx="20"/>
+    </g>
+    <g fill="#22c55e" opacity="0.78" filter="url(#soft)">
+      <rect x="118" y="118" width="420" height="420" rx="90"/>
+    </g>
+    <path d="M154 152h286v84H330v74h148v82H260v90H154V152Z" fill="#020617" opacity="0.86"/>
+    <path d="M184 178h212v35H296v72h138v37H232v94h-48V178Z" fill="#a7f3d0" opacity="0.92"/>
+  </g>
+  <g transform="translate(76 628)">
+    <text x="0" y="0" fill="#7dd3fc" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="800" letter-spacing="5">NOISE · CELLS · EROSION</text>
+    <text x="0" y="58" fill="#edf2ff" font-family="Inter, Arial, sans-serif" font-size="74" font-weight="900" letter-spacing="-3">Dungeon Generation</text>
+  </g>
+</svg>
