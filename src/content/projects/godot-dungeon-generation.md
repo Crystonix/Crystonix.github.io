@@ -5,6 +5,10 @@ category: Game Systems
 status: Procedural system
 featured: true
 order: 3
+media:
+  - type: youtube
+    src: https://www.youtube.com/embed/Y8MgzyOL0tg
+    title: Dungeon generation demo video.
 tags:
   - Godot
   - C++
@@ -15,6 +19,7 @@ tags:
 links:
   repo: https://github.com/Crystonix/CaveGen-GDExtension
 highlights:
+  - Restores the original dungeon generation video from the old portfolio.
   - Generates cave-like layouts from noisy grid data.
   - Uses repeated erosion passes to shape more natural spaces.
   - Explores a C++ extension path for heavier generation work.
