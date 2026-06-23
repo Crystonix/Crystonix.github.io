@@ -1,0 +1,197 @@
+---
+type ImageMedia = {
+  type: 'image';
+  src: string;
+  alt?: string;
+  title?: string;
+  position?: string;
+};
+
+type VideoMedia = {
+  type: 'video';
+  src: string;
+  alt?: string;
+  title?: string;
+  poster?: string;
+  position?: string;
+};
+
+type YouTubeMedia = {
+  type: 'youtube';
+  src: string;
+  title?: string;
+};
+
+type MediaItem = ImageMedia | VideoMedia | YouTubeMedia;
+type Variant = 'cover' | 'hero' | 'gallery';
+
+interface Props {
+  media: MediaItem;
+  variant?: Variant;
+  caption?: string;
+  decorative?: boolean;
+  loading?: 'eager' | 'lazy';
+  autoplay?: boolean;
+  controls?: boolean;
+  muted?: boolean;
+  loop?: boolean;
+}
+
+const {
+  media,
+  variant = 'gallery',
+  caption,
+  decorative = false,
+  loading = 'lazy',
+  autoplay = false,
+  controls = variant === 'gallery',
+  muted = autoplay,
+  loop = autoplay,
+} = Astro.props;
+
+const position = 'position' in media ? media.position ?? 'center' : undefined;
+const alt = decorative ? '' : 'alt' in media ? media.alt ?? '' : '';
+const title = media.title ?? caption ?? 'Project media';
+const shouldSyncMotion = media.type === 'video' && autoplay;
+---
+
+<figure class:list={['media-frame', `media-frame--${variant}`, media.type === 'youtube' && 'media-frame--embed']}>
+  <div class="media-frame__surface">
+    {media.type === 'image' && (
+      <img src={media.src} alt={alt} loading={loading} style={{ objectPosition: position }} />
+    )}
+
+    {media.type === 'video' && (
+      <video
+        src={media.src}
+        autoplay={autoplay}
+        controls={controls}
+        muted={muted}
+        loop={loop}
+        playsinline
+        preload="metadata"
+        poster={media.poster}
+        style={{ objectPosition: position }}
+        data-motion-video={shouldSyncMotion ? 'true' : undefined}
+      >
+        Your browser does not support the video element.
+      </video>
+    )}
+
+    {media.type === 'youtube' && (
+      <iframe
+        src={media.src}
+        title={title}
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    )}
+  </div>
+
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+{shouldSyncMotion && (
+  <script>
+    const setupMotionSafeVideos = () => {
+      const motionWindow = window as Window & { __crystonixMotionVideosReady?: boolean };
+
+      if (motionWindow.__crystonixMotionVideosReady) return;
+      motionWindow.__crystonixMotionVideosReady = true;
+
+      const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const syncVideos = () => {
+        document.querySelectorAll('[data-motion-video]').forEach((video) => {
+          if (!(video instanceof HTMLVideoElement)) return;
+
+          if (motionQuery.matches) {
+            video.pause();
+            video.removeAttribute('autoplay');
+            return;
+          }
+
+          video.play().catch(() => undefined);
+        });
+      };
+
+      syncVideos();
+      motionQuery.addEventListener('change', syncVideos);
+    };
+
+    setupMotionSafeVideos();
+  </script>
+)}
+
+<style>
+  .media-frame {
+    margin: 0;
+  }
+
+  .media-frame__surface {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    background: #03050a;
+  }
+
+  .media-frame img,
+  .media-frame video,
+  .media-frame iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .media-frame img,
+  .media-frame video {
+    object-fit: cover;
+  }
+
+  .media-frame--gallery {
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: var(--shadow-card);
+  }
+
+  .media-frame--gallery .media-frame__surface {
+    min-height: min(62vw, 34rem);
+  }
+
+  .media-frame--gallery img,
+  .media-frame--gallery video {
+    max-height: 72vh;
+    object-fit: contain;
+  }
+
+  .media-frame--embed .media-frame__surface {
+    aspect-ratio: 16 / 9;
+    min-height: auto;
+  }
+
+  .media-frame--cover,
+  .media-frame--hero {
+    height: 100%;
+  }
+
+  .media-frame--cover .media-frame__surface,
+  .media-frame--hero .media-frame__surface {
+    height: 100%;
+  }
+
+  .media-frame--hero img,
+  .media-frame--hero video {
+    filter: saturate(1.08) contrast(1.06);
+  }
+
+  figcaption {
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+  }
+</style>
