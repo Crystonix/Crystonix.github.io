@@ -60,10 +60,10 @@ const selectedWork = [
   },
 ];
 
-const currentFocus = [
-  'Make project pages clearer about what was built and why it matters.',
-  'Connect web projects, game systems, and visual work without treating them as separate portfolios.',
-  'Turn older work and current experiments into case studies that are easier to revisit and explain.',
+const bestFit = [
+  'Projects where interface work, visuals, and implementation need to support the same idea.',
+  'Creative tools, games, interactive scenes, or visual portfolio work that should feel clear and alive.',
+  'Work where a small prototype can become easier to use, explain, and keep building on.',
 ];
 ---
 
@@ -94,8 +94,9 @@ const currentFocus = [
         experiments, browser graphics, or visual collections.
       </p>
       <p>
-        This page keeps the summary tied to project evidence instead of listing
-        tools without context.
+        I learn best when there is something on screen to react to: a page, a
+        layout, a rule system, a scene, or a piece of visual work that can be
+        improved through iteration.
       </p>
     </div>
   </section>
@@ -150,16 +151,21 @@ const currentFocus = [
     </div>
   </section>
 
-  <section class="section split" aria-labelledby="resume-current-title">
+  <section class="section split" aria-labelledby="resume-fit-title">
     <div>
-      <p class="section__label">Current focus</p>
-      <h2 id="resume-current-title" class="section__title">
-        Clearer case studies and stronger presentation.
+      <p class="section__label">Best fit</p>
+      <h2 id="resume-fit-title" class="section__title">
+        Projects where the result needs to feel clear and alive.
       </h2>
     </div>
     <div class="stack">
+      <p class="section__description">
+        I am most interested in work where the technical part is not separate
+        from what someone sees or uses. The best fit is a project where the
+        interface, system, and visual direction can improve together.
+      </p>
       <ul class="list">
-        {currentFocus.map((item) => <li>{item}</li>)}
+        {bestFit.map((item) => <li>{item}</li>)}
       </ul>
       <div class="actions" aria-label="Resume links">
         <a class="button button--secondary" href="/projects/">Projects</a>
