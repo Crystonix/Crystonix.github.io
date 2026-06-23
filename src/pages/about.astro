@@ -1,39 +1,108 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const focusAreas = [
+  {
+    title: 'Web projects',
+    description:
+      'Structured pages, content workflows, galleries, and portfolio ideas that can grow beyond a static showcase.',
+  },
+  {
+    title: 'Game systems',
+    description:
+      'Procedural layouts, engine experiments, scene logic, and small prototypes where rules quickly become visible.',
+  },
+  {
+    title: 'Visual work',
+    description:
+      'Atmosphere, motion, character work, scene composition, and presentation as part of the portfolio, not an afterthought.',
+  },
+];
+
 const workingStyle = [
-  'Build from a clean, understandable foundation.',
-  'Prefer maintainable architecture over short-term patches.',
-  'Keep deployment and project structure easy to audit.',
-  'Turn meaningful work into clear documentation and case studies.',
+  'Start with a small working version before making the structure bigger.',
+  'Keep the project understandable enough to revisit later.',
+  'Use project pages to explain context, process, and decisions.',
+  'Keep older experiments visible when they still show a useful direction.',
+];
+
+const currentFocus = [
+  'Turning rough experiments into clearer case studies.',
+  'Connecting code, tools, and visual presentation more clearly.',
+  'Making the site feel more personal while keeping the claims grounded in actual projects.',
 ];
 ---
 
 <BaseLayout
   title="About | Crystonix"
-  description="About page for the Crystonix portfolio."
+  description="A personal introduction to the Crystonix portfolio."
 >
   <header class="page-header">
     <p class="eyebrow">About</p>
-    <h1 class="page-title">A practical engineering portfolio.</h1>
+    <h1 class="page-title">Code, games, tools, and visual experiments.</h1>
     <p class="page-lead">
-      This site is the public home for Crystonix projects, technical notes, and
-      engineering decisions.
+      This portfolio collects projects where technical work turns into something
+      visible: a web page, a game-system prototype, a tool foundation, a 3D
+      scene, or a visual piece.
     </p>
   </header>
 
   <section class="section split" aria-labelledby="about-focus-title">
     <div>
-      <p class="section__label">Focus</p>
+      <p class="section__label">What this site is</p>
       <h2 id="about-focus-title" class="section__title">
-        Document the work clearly.
+        A living archive, not only a finished-work gallery.
+      </h2>
+    </div>
+    <div class="prose">
+      <p>
+        Some entries are newer case studies. Some are restored older projects
+        that still explain a direction: browser graphics, Godot systems, visual
+        presentation, or web projects with structured content behind them.
+      </p>
+      <p>
+        The goal is to show the shape of the work honestly. Each project should
+        make it clearer what was built, what was explored, and why it belongs
+        next to the other pieces.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="about-building-title">
+    <div class="section__header">
+      <p class="section__label">What I like building</p>
+      <h2 id="about-building-title" class="section__title">
+        Small projects with a clear shape.
+      </h2>
+      <p class="section__description">
+        The projects cross a few areas, but they usually share the same pull:
+        making an idea tangible enough to test, show, and explain.
+      </p>
+    </div>
+    <div class="card-grid">
+      {
+        focusAreas.map((area) => (
+          <article class="card">
+            <h3>{area.title}</h3>
+            <p>{area.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section split" aria-labelledby="about-process-title">
+    <div>
+      <p class="section__label">How I work</p>
+      <h2 id="about-process-title" class="section__title">
+        Make it work, then make it understandable.
       </h2>
     </div>
     <div class="stack">
       <p class="section__description">
-        The portfolio is structured to grow from a simple homepage into a set of
-        durable case studies. Each project can be expanded with context,
-        architecture, trade-offs, implementation notes, and links.
+        I like beginning with a small working version and then improving the
+        structure around it: clearer naming, reusable components, separated
+        content, and enough notes that the project can be picked up again.
       </p>
       <ul class="list">
         {workingStyle.map((item) => <li>{item}</li>)}
@@ -41,15 +110,21 @@ const workingStyle = [
     </div>
   </section>
 
-  <section class="section card" aria-labelledby="about-next-title">
-    <p class="section__label">Next content pass</p>
-    <h2 id="about-next-title" class="section__title">
-      Add personal details only when they are accurate.
+  <section class="section card" aria-labelledby="about-now-title">
+    <p class="section__label">Current direction</p>
+    <h2 id="about-now-title" class="section__title">
+      Making the portfolio more personal and more useful.
     </h2>
-    <p class="section__description">
-      The next version should replace this neutral copy with your actual
-      background, technical stack, strongest projects, and preferred contact
-      path.
-    </p>
+    <div class="stack">
+      <p class="section__description">
+        The current direction is to make the technical and visual sides of the
+        work easier to understand together. Project pages should show more than
+        a thumbnail: they should explain the idea, the contribution, and the
+        next step.
+      </p>
+      <ul class="list">
+        {currentFocus.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
   </section>
 </BaseLayout>
