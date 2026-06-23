@@ -10,6 +10,7 @@ type MediaCover = {
 };
 
 type HeroReelAspect = 'wide' | 'landscape' | 'portrait' | 'square';
+type AmbientGlow = 'none' | 'soft' | 'strong';
 
 interface Props {
   title: string;
@@ -19,6 +20,7 @@ interface Props {
   featured?: boolean;
   loading?: 'eager' | 'lazy';
   aspect?: HeroReelAspect;
+  ambientGlow?: AmbientGlow;
 }
 
 const {
@@ -29,28 +31,49 @@ const {
   featured = false,
   loading = 'lazy',
   aspect = 'wide',
+  ambientGlow = 'soft',
 } = Astro.props;
+
+const glowSrc = cover.type === 'image' ? cover.src : cover.poster;
+const hasAmbientGlow = ambientGlow !== 'none' && Boolean(glowSrc);
 ---
 
 <a
   class:list={[
     'hero-reel-tile',
     `hero-reel-tile--${aspect}`,
+    `hero-reel-tile--glow-${ambientGlow}`,
     featured && 'hero-reel-tile--featured',
   ]}
+  data-ambient-glow={hasAmbientGlow ? ambientGlow : undefined}
   href={href}
 >
-  <div class="hero-reel-tile__media">
-    <MediaFrame
-      media={cover}
-      variant="hero"
-      decorative
-      loading={loading}
-      autoplay={cover.type === 'video'}
-      controls={false}
-      muted
-      loop
-    />
+  <div class="hero-reel-tile__media-shell">
+    {
+      hasAmbientGlow && glowSrc && (
+        <img
+          class="hero-reel-tile__ambient"
+          src={glowSrc}
+          alt=""
+          aria-hidden="true"
+          loading={loading}
+          style={{ objectPosition: cover.position ?? 'center' }}
+        />
+      )
+    }
+
+    <div class="hero-reel-tile__media">
+      <MediaFrame
+        media={cover}
+        variant="hero"
+        decorative
+        loading={loading}
+        autoplay={cover.type === 'video'}
+        controls={false}
+        muted
+        loop
+      />
+    </div>
   </div>
 
   <div class="hero-reel-tile__meta">
@@ -61,8 +84,12 @@ const {
 
 <style>
   .hero-reel-tile {
+    --hero-reel-tile-glow-opacity: 0;
+    --hero-reel-tile-glow-scale: 1.04;
+    --hero-reel-tile-glow-blur: 1.25rem;
+
+    position: relative;
     display: grid;
-    overflow: hidden;
     min-width: 0;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: clamp(1rem, 1.8vw, 1.45rem);
@@ -74,6 +101,18 @@ const {
       transform 180ms ease;
   }
 
+  .hero-reel-tile[data-ambient-glow='soft'] {
+    --hero-reel-tile-glow-opacity: 0.36;
+    --hero-reel-tile-glow-scale: 1.055;
+    --hero-reel-tile-glow-blur: 1.35rem;
+  }
+
+  .hero-reel-tile[data-ambient-glow='strong'] {
+    --hero-reel-tile-glow-opacity: 0.58;
+    --hero-reel-tile-glow-scale: 1.075;
+    --hero-reel-tile-glow-blur: 1.75rem;
+  }
+
   .hero-reel-tile:hover,
   .hero-reel-tile:focus-visible {
     color: var(--color-text);
@@ -82,7 +121,40 @@ const {
     transform: translateY(-2px);
   }
 
+  .hero-reel-tile:hover[data-ambient-glow],
+  .hero-reel-tile:focus-visible[data-ambient-glow] {
+    --hero-reel-tile-glow-opacity: 0.66;
+  }
+
+  .hero-reel-tile--glow-strong:hover,
+  .hero-reel-tile--glow-strong:focus-visible {
+    --hero-reel-tile-glow-opacity: 0.78;
+  }
+
+  .hero-reel-tile__media-shell {
+    position: relative;
+    isolation: isolate;
+    min-width: 0;
+  }
+
+  .hero-reel-tile__ambient {
+    position: absolute;
+    inset: -0.55rem;
+    z-index: -1;
+    width: calc(100% + 1.1rem);
+    height: calc(100% + 1.1rem);
+    border-radius: inherit;
+    filter: blur(var(--hero-reel-tile-glow-blur)) saturate(1.35) contrast(1.06);
+    opacity: var(--hero-reel-tile-glow-opacity);
+    pointer-events: none;
+    transform: scale(var(--hero-reel-tile-glow-scale));
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease;
+  }
+
   .hero-reel-tile__media {
+    position: relative;
     overflow: hidden;
     aspect-ratio: var(--hero-reel-tile-aspect, 16 / 9);
     border-radius: inherit;
@@ -111,6 +183,8 @@ const {
     display: grid;
     gap: 0.42rem;
     padding: clamp(0.7rem, 1.35vw, 0.95rem);
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent),
       rgba(3, 5, 10, 0.52);
@@ -143,6 +217,18 @@ const {
 
   .hero-reel-tile--featured .hero-reel-tile__meta strong {
     font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-reel-tile,
+    .hero-reel-tile__ambient {
+      transition: none;
+    }
+
+    .hero-reel-tile:hover,
+    .hero-reel-tile:focus-visible {
+      transform: none;
+    }
   }
 
   @media (max-width: 620px) {
