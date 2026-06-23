@@ -1,7 +1,7 @@
 ---
 title: Discord Authenticator
-description: A study project exploring login flows with a SvelteKit interface, a Rust service, Discord OAuth, Redis sessions, and PostgreSQL-backed data.
-category: Web products
+description: A study project about login flows, built with a SvelteKit interface, a Rust service, Discord OAuth, Redis sessions, and PostgreSQL.
+category: Web Projects
 status: Study project
 featured: true
 order: 2
@@ -16,19 +16,19 @@ tags:
 links:
   repo: https://github.com/Crystonix/Auth
 highlights:
-  - Separates the user-facing SvelteKit app from the Rust service handling the login flow.
-  - Uses Redis for session storage and PostgreSQL for application data.
-  - Runs as a Docker-based local service setup.
+  - Combines a SvelteKit interface with a separate Rust service.
+  - Uses Redis for sessions and PostgreSQL for application data.
+  - Runs as a Docker-based local setup.
 ---
 
-## Overview
+## About
 
-Discord Authenticator is a study project about understanding how login systems work beneath the interface. It uses Discord OAuth for the login flow and separates the browser-facing application from the service that handles the backend responsibilities.
+Discord Authenticator is a study project about understanding how login flows work behind the interface. It uses Discord OAuth and separates the browser-facing app from the service that handles the backend work.
 
-## My focus
+## What I worked on
 
-The project combines a SvelteKit frontend with a Rust service. The backend work includes routing, session handling, database access, service composition, and local infrastructure through Docker.
+I worked with a SvelteKit frontend and a Rust service. The project includes routing, session handling, database access, service setup, and local infrastructure with Docker.
 
-## Why it matters
+## What I like about it
 
-This project belongs in the portfolio because it shows backend and frontend work together in one focused application. It is not presented as a product launch; it is a technical study with a clear purpose and a working service structure.
+I like this project because it connects frontend and backend work in a focused way. It is not presented as a finished product; it is a learning project with a clear purpose and a working structure.
