@@ -95,7 +95,8 @@ const shouldSyncMotion = media.type === 'video' && autoplay;
 {shouldSyncMotion && (
   <script>
     const setupMotionSafeVideos = () => {
-      const motionWindow = window as Window & { __crystonixMotionVideosReady?: boolean };
+      /** @type {Window & { __crystonixMotionVideosReady?: boolean }} */
+      const motionWindow = window;
 
       if (motionWindow.__crystonixMotionVideosReady) return;
       motionWindow.__crystonixMotionVideosReady = true;
