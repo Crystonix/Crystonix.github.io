@@ -3,6 +3,7 @@ interface MediaCover {
   type: 'image' | 'video' | 'youtube';
   src: string;
   alt?: string;
+  position?: string;
 }
 
 interface Props {
@@ -22,9 +23,9 @@ const { title, description, href, tags = [], category, status, cover } = Astro.p
   {cover && (
     <div class="project-card__cover" aria-hidden={cover.alt ? undefined : 'true'}>
       {cover.type === 'video' ? (
-        <video src={cover.src} autoplay muted loop playsinline preload="metadata"></video>
+        <video src={cover.src} autoplay muted loop playsinline preload="metadata" style={{ objectPosition: cover.position ?? 'center' }}></video>
       ) : (
-        <img src={cover.src} alt={cover.alt ?? ''} loading="lazy" />
+        <img src={cover.src} alt={cover.alt ?? ''} loading="lazy" style={{ objectPosition: cover.position ?? 'center' }} />
       )}
     </div>
   )}
