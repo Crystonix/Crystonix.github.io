@@ -5,6 +5,10 @@ category: Visual Work
 status: Team animation
 featured: false
 order: 8
+cover:
+  type: image
+  src: https://img.youtube.com/vi/ZsaZKan7WM0/hqdefault.jpg
+  alt: Thumbnail for The Legal Trap animation.
 media:
   - type: youtube
     src: https://www.youtube.com/embed/ZsaZKan7WM0
