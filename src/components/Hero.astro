@@ -3,6 +3,7 @@ interface MediaCover {
   type: 'image' | 'video' | 'youtube';
   src: string;
   alt?: string;
+  position?: string;
 }
 
 interface ReelItem {
@@ -40,9 +41,23 @@ const { eyebrow, title, lead, reelItems = [] } = Astro.props;
           <a class={`hero-reel__item hero-reel__item--${index + 1}`} href={item.href} aria-label={`Open ${item.title}`}>
             <div class="hero-reel__media">
               {item.cover.type === 'video' ? (
-                <video src={item.cover.src} autoplay muted loop playsinline preload="metadata" data-hero-video></video>
+                <video
+                  src={item.cover.src}
+                  autoplay
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                  data-hero-video
+                  style={{ objectPosition: item.cover.position ?? 'center' }}
+                ></video>
               ) : (
-                <img src={item.cover.src} alt={item.cover.alt ?? ''} loading={index === 0 ? 'eager' : 'lazy'} />
+                <img
+                  src={item.cover.src}
+                  alt={item.cover.alt ?? ''}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  style={{ objectPosition: item.cover.position ?? 'center' }}
+                />
               )}
             </div>
             <div class="hero-reel__overlay">
