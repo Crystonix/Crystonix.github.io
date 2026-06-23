@@ -1,0 +1,21 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  lead: string;
+}
+
+const { eyebrow, title, lead } = Astro.props;
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__content">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 id="hero-title">{title}</h1>
+    <p class="hero__lead">{lead}</p>
+    <div class="hero__actions">
+      <a class="button button--primary" href="/projects/">View projects</a>
+      <a class="button button--secondary" href="https://github.com/Crystonix" rel="noreferrer">Open GitHub</a>
+    </div>
+  </div>
+</section>
