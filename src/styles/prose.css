@@ -9,6 +9,10 @@
   border-top: 1px solid var(--color-border);
 }
 
+.section--prose.split {
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
 .section--prose .section__description {
   max-width: 44rem;
 }
