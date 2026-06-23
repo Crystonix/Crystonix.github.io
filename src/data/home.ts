@@ -5,8 +5,8 @@ export const homeHero = {
 };
 
 export const heroProjectIds = [
-  "game-art-visuals",
   "underwater-threejs-scene",
+  "game-art-visuals",
   "godot-dungeon-generation",
   "animation-legal-trap",
 ] as const;
