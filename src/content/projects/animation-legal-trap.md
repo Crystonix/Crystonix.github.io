@@ -5,6 +5,10 @@ category: Visual Work
 status: Team animation
 featured: false
 order: 8
+media:
+  - type: youtube
+    src: https://www.youtube.com/embed/ZsaZKan7WM0
+    title: The Legal Trap animation video.
 tags:
   - Blender
   - Animation
@@ -14,9 +18,9 @@ tags:
 links:
   repo: https://github.com/Crystonix/Animation
 highlights:
+  - Restores the original animation embed from the old portfolio.
   - Shows visual production work beside the code and game projects.
   - Includes animation, modeling, compositing, and team coordination.
-  - Needs final renders and process images to become a stronger visual page.
 ---
 
 ## About
