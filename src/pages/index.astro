@@ -23,13 +23,14 @@ const heroReelItems = [];
 
 for (const id of heroProjectIds) {
   const project = projects.find((entry) => entry.id === id);
+  const cover = project?.data.heroCover ?? project?.data.cover;
 
-  if (project?.data.cover) {
+  if (project && cover) {
     heroReelItems.push({
       title: project.data.title,
       label: project.data.category,
       href: `/projects/${project.id}/`,
-      cover: project.data.cover,
+      cover,
     });
   }
 }
