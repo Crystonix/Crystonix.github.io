@@ -21,7 +21,7 @@ const videoMediaSchema = baseMediaSchema.extend({
 
 const youtubeMediaSchema = z.object({
   type: z.literal('youtube'),
-  src: z.string().url(),
+  src: z.url(),
   title: z.string().optional(),
 });
 
@@ -55,8 +55,8 @@ const projects = defineCollection({
     media: z.array(projectMediaSchema).default([]),
     links: z
       .object({
-        repo: z.string().url().optional(),
-        demo: z.string().url().optional(),
+        repo: z.url().optional(),
+        demo: z.url().optional(),
       })
       .default({}),
   }),
