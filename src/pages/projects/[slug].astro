@@ -14,6 +14,26 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const { title, description, category, status, tags, highlights, links } = project.data;
+
+const formatHighlight = (highlight: unknown) => {
+  if (typeof highlight === 'string') {
+    return { title: null, text: highlight };
+  }
+
+  if (
+    highlight &&
+    typeof highlight === 'object' &&
+    'text' in highlight &&
+    typeof highlight.text === 'string'
+  ) {
+    return {
+      title: 'title' in highlight && typeof highlight.title === 'string' ? highlight.title : null,
+      text: highlight.text,
+    };
+  }
+
+  return { title: null, text: String(highlight) };
+};
 ---
 
 <BaseLayout title={`${title} | Crystonix`} description={description}>
@@ -67,7 +87,16 @@ const { title, description, category, status, tags, highlights, links } = projec
           <div>
             <h3>Notes</h3>
             <ul class="list">
-              {highlights.map((highlight) => <li>{highlight}</li>)}
+              {highlights.map((highlight) => {
+                const item = formatHighlight(highlight);
+
+                return (
+                  <li>
+                    {item.title && <strong>{item.title}: </strong>}
+                    {item.text}
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}
