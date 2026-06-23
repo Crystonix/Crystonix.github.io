@@ -5,6 +5,14 @@ category: Visual Work
 status: Interactive scene
 featured: true
 order: 4
+cover:
+  type: video
+  src: /projects/underwater/unterwasser.mp4
+  alt: Video preview of the underwater Three.js scene.
+media:
+  - type: video
+    src: /projects/underwater/unterwasser.mp4
+    title: Original underwater scene preview from the old portfolio.
 tags:
   - Three.js
   - WebGL
@@ -14,7 +22,9 @@ tags:
   - 3D scene
 links:
   repo: https://github.com/Crystonix/unterwasser
+  demo: https://crystonix.github.io/unterwasser/
 highlights:
+  - Restores the original video preview from the old portfolio.
   - Builds a small atmospheric underwater scene.
   - Uses animated bubbles to add motion and depth.
   - Combines texture and displacement work for the ground plane.
