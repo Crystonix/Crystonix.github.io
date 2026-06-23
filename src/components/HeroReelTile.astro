@@ -40,18 +40,20 @@ const {
   ]}
   href={href}
 >
-  <MediaFrame
-    media={cover}
-    variant="hero"
-    decorative
-    loading={loading}
-    autoplay={cover.type === 'video'}
-    controls={false}
-    muted
-    loop
-  />
-  <div class="hero-reel-tile__scrim" aria-hidden="true"></div>
-  <div class="hero-reel-tile__label">
+  <div class="hero-reel-tile__media">
+    <MediaFrame
+      media={cover}
+      variant="hero"
+      decorative
+      loading={loading}
+      autoplay={cover.type === 'video'}
+      controls={false}
+      muted
+      loop
+    />
+  </div>
+
+  <div class="hero-reel-tile__meta">
     <span>{label}</span>
     <strong>{title}</strong>
   </div>
@@ -59,15 +61,34 @@ const {
 
 <style>
   .hero-reel-tile {
-    position: relative;
-    display: block;
+    display: grid;
     overflow: hidden;
-    min-height: 0;
-    aspect-ratio: var(--hero-reel-tile-aspect, 16 / 9);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    min-width: 0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: clamp(1rem, 1.8vw, 1.45rem);
+    background: rgba(8, 13, 24, 0.74);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.26);
+    transition:
+      border-color 180ms ease,
+      background 180ms ease,
+      transform 180ms ease;
+  }
+
+  .hero-reel-tile:hover,
+  .hero-reel-tile:focus-visible {
+    color: var(--color-text);
+    border-color: rgba(125, 211, 252, 0.42);
+    background: rgba(10, 18, 32, 0.86);
+    transform: translateY(-2px);
+  }
+
+  .hero-reel-tile__media {
+    overflow: hidden;
+    aspect-ratio: var(--hero-reel-tile-aspect, 16 / 9);
+    border-radius: inherit;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
     background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
   }
 
   .hero-reel-tile--wide {
@@ -86,45 +107,20 @@ const {
     --hero-reel-tile-aspect: 1 / 1;
   }
 
-  .hero-reel-tile:hover,
-  .hero-reel-tile:focus-visible {
-    color: var(--color-text);
-    border-color: rgba(125, 211, 252, 0.42);
-  }
-
-  .hero-reel-tile__scrim {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      transparent 58%,
-      rgba(3, 5, 10, 0.3) 100%
-    );
-    pointer-events: none;
-  }
-
-  .hero-reel-tile__label {
-    position: absolute;
-    right: clamp(0.55rem, 1.2vw, 0.8rem);
-    bottom: clamp(0.55rem, 1.2vw, 0.8rem);
-    left: clamp(0.55rem, 1.2vw, 0.8rem);
+  .hero-reel-tile__meta {
     display: grid;
-    width: fit-content;
-    max-width: calc(100% - 1.1rem);
-    gap: 0.24rem;
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: clamp(0.7rem, 1.4vw, 1rem);
-    background: rgba(3, 5, 10, 0.68);
-    padding: clamp(0.46rem, 1vw, 0.66rem);
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.32);
-    backdrop-filter: blur(16px);
+    gap: 0.42rem;
+    padding: clamp(0.7rem, 1.35vw, 0.95rem);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.045), transparent),
+      rgba(3, 5, 10, 0.52);
   }
 
-  .hero-reel-tile__label span {
+  .hero-reel-tile__meta span {
     width: fit-content;
-    border: 1px solid rgba(125, 211, 252, 0.28);
+    border: 1px solid rgba(125, 211, 252, 0.24);
     border-radius: 999px;
-    background: rgba(8, 47, 73, 0.78);
+    background: rgba(8, 47, 73, 0.66);
     color: var(--color-accent);
     font-size: 0.6rem;
     font-weight: 850;
@@ -133,25 +129,26 @@ const {
     text-transform: uppercase;
   }
 
-  .hero-reel-tile__label strong {
-    width: fit-content;
-    max-width: 100%;
-    border-radius: 0.55rem;
-    background: rgba(255, 255, 255, 0.07);
+  .hero-reel-tile__meta strong {
     color: var(--color-text);
-    font-size: clamp(0.84rem, 1.2vw, 0.98rem);
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
     line-height: 1.08;
-    padding: 0.22rem 0.36rem;
     text-wrap: balance;
   }
 
-  .hero-reel-tile--featured .hero-reel-tile__label strong {
+  .hero-reel-tile--featured .hero-reel-tile__meta {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .hero-reel-tile--featured .hero-reel-tile__meta strong {
     font-size: clamp(1.05rem, 1.8vw, 1.35rem);
   }
 
   @media (max-width: 620px) {
-    .hero-reel-tile__label {
-      width: auto;
+    .hero-reel-tile--featured .hero-reel-tile__meta {
+      grid-template-columns: 1fr;
+      align-items: start;
     }
   }
 </style>
