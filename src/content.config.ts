@@ -1,8 +1,12 @@
-import { defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
-import { z } from 'astro/zod';
+import { defineCollection } from "astro:content";
+import { glob } from "astro/loaders";
+import { z } from "astro/zod";
 
-const projectCategorySchema = z.enum(['Web Projects', 'Game Systems', 'Visual Work']);
+const projectCategorySchema = z.enum([
+  "Web Projects",
+  "Game Systems",
+  "Visual Work",
+]);
 
 const baseMediaSchema = z.object({
   src: z.string(),
@@ -12,22 +16,26 @@ const baseMediaSchema = z.object({
 });
 
 const imageMediaSchema = baseMediaSchema.extend({
-  type: z.literal('image'),
+  type: z.literal("image"),
 });
 
 const videoMediaSchema = baseMediaSchema.extend({
-  type: z.literal('video'),
+  type: z.literal("video"),
   poster: z.string().optional(),
 });
 
 const youtubeMediaSchema = z.object({
-  type: z.literal('youtube'),
+  type: z.literal("youtube"),
   src: z.string().url(),
   title: z.string().optional(),
 });
 
 const visualPreviewSchema = z.union([imageMediaSchema, videoMediaSchema]);
-const projectMediaSchema = z.union([imageMediaSchema, videoMediaSchema, youtubeMediaSchema]);
+const projectMediaSchema = z.union([
+  imageMediaSchema,
+  videoMediaSchema,
+  youtubeMediaSchema,
+]);
 const projectHighlightSchema = z.union([
   z.string(),
   z.object({
@@ -37,7 +45,7 @@ const projectHighlightSchema = z.union([
 ]);
 
 const projects = defineCollection({
-  loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
+  loader: glob({ base: "./src/content/projects", pattern: "**/*.{md,mdx}" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
