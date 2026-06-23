@@ -1,10 +1,10 @@
 ---
-import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import MediaFrame from '../../components/MediaFrame.astro';
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import MediaFrame from "../../components/MediaFrame.astro";
 
 export async function getStaticPaths() {
-  const projects = await getCollection('projects');
+  const projects = await getCollection("projects");
 
   return projects.map((project) => ({
     params: { slug: project.id },
@@ -17,7 +17,7 @@ const { Content } = await render(project);
 const { title, description, category, status, tags, links, cover, media, highlights } = project.data;
 const mediaItems = media.length > 0 ? media : cover ? [cover] : [];
 const notes = highlights
-  .map((highlight) => (typeof highlight === 'string' ? { text: highlight } : highlight))
+  .map((highlight) => (typeof highlight === "string" ? { text: highlight } : highlight))
   .filter((highlight) => highlight.text.trim().length > 0);
 ---
 
@@ -44,7 +44,7 @@ const notes = highlights
       <section class="project-media" aria-label="Project media">
         {mediaItems.map((item) => (
           <MediaFrame
-            media={item.type === 'youtube' && !item.title ? { ...item, title } : item}
+            media={item.type === "youtube" && !item.title ? { ...item, title } : item}
             variant="gallery"
             caption={item.title}
             loading="lazy"
@@ -101,10 +101,25 @@ const notes = highlights
 </BaseLayout>
 
 <style>
+  .project-detail__header .page-title {
+    max-width: 14ch;
+  }
+
   .project-media {
     display: grid;
     gap: 1rem;
     margin: 0 0 clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .project-detail__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 22rem);
+    gap: clamp(1.5rem, 5vw, 3rem);
+    align-items: start;
+  }
+
+  .project-detail__content {
+    min-width: 0;
   }
 
   .project-detail__aside {
@@ -150,6 +165,10 @@ const notes = highlights
   }
 
   @media (max-width: 820px) {
+    .project-detail__layout {
+      grid-template-columns: 1fr;
+    }
+
     .project-detail__aside {
       position: static;
     }
