@@ -5,6 +5,10 @@ const navigation = [
   { href: '/about/', label: 'About' },
   { href: '/resume/', label: 'Resume' },
 ];
+
+const currentPath = Astro.url.pathname;
+const isActivePath = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
 ---
 
 <header class="site-header">
@@ -15,7 +19,16 @@ const navigation = [
     </a>
 
     <nav class="site-nav" aria-label="Primary navigation">
-      {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+      {
+        navigation.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActivePath(item.href) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
       <a href="https://github.com/Crystonix" rel="noreferrer">GitHub</a>
     </nav>
   </div>
