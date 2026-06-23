@@ -14,7 +14,12 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const { title, description, category, status, tags, highlights, links, cover, media } = project.data;
-const mediaItems = media.length > 0 ? media : cover ? [cover] : [];
+const mediaItems = (media.length > 0 ? media : cover ? [cover] : []).map((item) => ({
+  title: undefined,
+  alt: undefined,
+  poster: undefined,
+  ...item,
+}));
 
 const formatHighlight = (highlight: unknown) => {
   if (typeof highlight === 'string') {
@@ -63,7 +68,7 @@ const formatHighlight = (highlight: unknown) => {
             {item.type === 'image' && <img src={item.src} alt={item.alt ?? ''} loading="lazy" />}
 
             {item.type === 'video' && (
-              <video controls playsinline preload="metadata" poster={'poster' in item ? item.poster : undefined}>
+              <video controls playsinline preload="metadata" poster={item.poster}>
                 <source src={item.src} />
                 Your browser does not support the video element.
               </video>
