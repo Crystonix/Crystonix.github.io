@@ -1,0 +1,106 @@
+---
+import MediaFrame from "./MediaFrame.astro";
+
+type MediaCover = {
+  type: "image" | "video";
+  src: string;
+  alt?: string;
+  position?: string;
+  poster?: string;
+};
+
+interface Props {
+  title: string;
+  label: string;
+  href: string;
+  cover: MediaCover;
+  featured?: boolean;
+  loading?: "eager" | "lazy";
+}
+
+const { title, label, href, cover, featured = false, loading = "lazy" } = Astro.props;
+---
+
+<a class:list={["hero-reel-tile", featured && "hero-reel-tile--featured"]} href={href}>
+  <MediaFrame
+    media={cover}
+    variant="hero"
+    decorative
+    loading={loading}
+    autoplay={cover.type === "video"}
+    controls={false}
+    muted
+    loop
+  />
+  <div class="hero-reel-tile__scrim" aria-hidden="true"></div>
+  <div class="hero-reel-tile__label">
+    <span>{label}</span>
+    <strong>{title}</strong>
+  </div>
+</a>
+
+<style>
+  .hero-reel-tile {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    min-height: 7.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: clamp(1rem, 1.8vw, 1.45rem);
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+  }
+
+  .hero-reel-tile:hover,
+  .hero-reel-tile:focus-visible {
+    color: var(--color-text);
+    border-color: rgba(125, 211, 252, 0.42);
+  }
+
+  .hero-reel-tile__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 48%,
+      rgba(3, 5, 10, 0.54) 100%
+    );
+    pointer-events: none;
+  }
+
+  .hero-reel-tile__label {
+    position: absolute;
+    right: clamp(0.55rem, 1.2vw, 0.75rem);
+    bottom: clamp(0.55rem, 1.2vw, 0.75rem);
+    left: clamp(0.55rem, 1.2vw, 0.75rem);
+    display: grid;
+    gap: 0.08rem;
+    max-width: calc(100% - 1.1rem);
+    padding: 0;
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.76);
+  }
+
+  .hero-reel-tile__label span {
+    width: fit-content;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    background: rgba(3, 5, 10, 0.46);
+    color: var(--color-accent);
+    font-size: 0.6rem;
+    font-weight: 850;
+    letter-spacing: 0.13em;
+    padding: 0.22rem 0.42rem;
+    text-transform: uppercase;
+  }
+
+  .hero-reel-tile__label strong {
+    color: var(--color-text);
+    font-size: clamp(0.86rem, 1.35vw, 1.02rem);
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  .hero-reel-tile--featured .hero-reel-tile__label strong {
+    font-size: clamp(1.1rem, 2vw, 1.45rem);
+  }
+</style>
