@@ -9,41 +9,44 @@ const projects = await getCollection('projects');
 const featuredProjects = projects
   .filter((project) => project.data.featured)
   .sort((a, b) => a.data.order - b.data.order);
+const visualProjects = projects
+  .filter((project) => project.data.category === 'Visual work')
+  .sort((a, b) => a.data.order - b.data.order);
 
 const focusAreas = [
   {
-    title: 'Web application architecture',
+    title: 'Web products',
     description:
-      'Static-first Astro work, service boundaries, authentication flows, and content-backed product foundations.',
+      'Portfolio platforms, login flows, content workflows, and small product foundations built for real use cases.',
   },
   {
-    title: 'Game systems and tooling',
+    title: 'Game systems',
     description:
-      'Godot systems, procedural generation, editor tooling, and performance-oriented implementation paths.',
+      'Godot projects, procedural generation, reusable tools, and gameplay-facing prototypes.',
   },
   {
-    title: 'Graphics and creative tech',
+    title: 'Visual work',
     description:
-      'Three.js scenes, Blender production work, animation, particles, and browser-based visual experiments.',
+      'Game art, Blender animation, browser-based 3D scenes, atmosphere, motion, and presentation work.',
   },
 ];
 ---
 
 <BaseLayout
-  title="Crystonix | Software, game systems, and creative tech"
-  description="Crystonix portfolio featuring web applications, game development systems, graphics experiments, and technical case studies."
+  title="Crystonix | Web, game, and visual work"
+  description="Portfolio of Crystonix: web products, Godot systems, procedural generation, game art, animation, and browser-based visual work."
 >
   <Hero
-    eyebrow="Software · Game systems · Creative tech"
+    eyebrow="Web · Games · Visuals"
     title="Crystonix"
-    lead="A project portfolio focused on durable web architecture, Godot systems, procedural generation, and browser-based graphics work."
+    lead="Selected work across web products, Godot systems, procedural generation, game art, animation, and browser-based 3D scenes."
   />
 
   <section class="section" aria-labelledby="featured-projects-title">
     <SectionHeading
       label="Featured work"
-      title="Selected projects with real technical substance."
-      description="These projects were selected from the repository audit because they have the strongest architecture, implementation, or visual-systems story."
+      title="Projects selected for presentation, craft, and direction."
+      description="A concise selection of work that shows product thinking, game-system experiments, and visual production."
     />
 
     <div class="card-grid">
@@ -62,13 +65,13 @@ const focusAreas = [
 
   <section class="section split" aria-labelledby="focus-title">
     <div>
-      <p class="section__label">Focus</p>
-      <h2 id="focus-title" class="section__title">A portfolio organized by engineering signal.</h2>
+      <p class="section__label">Direction</p>
+      <h2 id="focus-title" class="section__title">A portfolio for web, games, and visual work.</h2>
     </div>
 
     <div class="stack">
       <p class="section__description">
-        The site is now content-driven: projects live as typed Markdown entries, the homepage only shows selected featured work, and the full project index can grow without duplicating page logic.
+        The portfolio is intentionally split into three visible areas: web products, game systems, and visual work. That keeps the creative pieces visible instead of reducing everything to code and tooling.
       </p>
       <div class="focus-list">
         {focusAreas.map((area) => (
@@ -81,11 +84,32 @@ const focusAreas = [
     </div>
   </section>
 
-  <section class="section card" aria-labelledby="next-title">
-    <p class="section__label">Next</p>
-    <h2 id="next-title" class="section__title">Turn the strongest projects into deeper case studies.</h2>
+  <section class="section" aria-labelledby="visual-work-title">
+    <SectionHeading
+      label="Visual work"
+      title="Game art, animation, and browser-based scenes."
+      description="This section gives the visual side of the portfolio its own space: game-art presentation, Blender animation, and interactive 3D atmosphere."
+    />
+
+    <div class="card-grid">
+      {visualProjects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          href={`/projects/${project.id}/`}
+          tags={project.data.tags}
+          category={project.data.category}
+          status={project.data.status}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section card" aria-labelledby="explore-title">
+    <p class="section__label">Explore</p>
+    <h2 id="explore-title" class="section__title">Browse the full project selection.</h2>
     <p class="section__description">
-      The structure is ready for screenshots, architecture diagrams, performance notes, and more precise implementation details as each repository is cleaned up.
+      The full index includes featured pieces, supporting prototypes, reusable Godot tooling, and visual projects that can be expanded with screenshots, GIFs, renders, and process breakdowns.
     </p>
     <div class="actions">
       <a class="button button--primary" href="/projects/">Open all projects</a>
