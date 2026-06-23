@@ -1,0 +1,8 @@
+.site-nav a {
+  border-bottom: 1px solid transparent;
+  padding-bottom: 0.2rem;
+}
+
+.site-nav a:hover {
+  border-bottom-color: var(--color-accent);
+}
