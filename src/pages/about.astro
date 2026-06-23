@@ -26,10 +26,10 @@ const workingStyle = [
   'Keep older experiments visible when they still show a useful direction.',
 ];
 
-const currentFocus = [
-  'Turning rough experiments into clearer case studies.',
-  'Connecting code, tools, and visual presentation more clearly.',
-  'Making the site feel more personal while keeping the claims grounded in actual projects.',
+const nextProjects = [
+  'Browser scenes and small interactive pieces that have something to see from the first version.',
+  'Game tools and procedural systems where changing a rule immediately changes what appears on screen.',
+  'Visual pages that keep sketches, renders, GIFs, and experiments close to the code that supports them.',
 ];
 ---
 
@@ -41,9 +41,9 @@ const currentFocus = [
     <p class="eyebrow">About</p>
     <h1 class="page-title">Code, games, tools, and visual experiments.</h1>
     <p class="page-lead">
-      This portfolio collects projects where technical work turns into something
-      visible: a web page, a game-system prototype, a tool foundation, a 3D
-      scene, or a visual piece.
+      I like projects where code turns into something visible: a page, a
+      tool foundation, a small game system, a browser scene, or a visual piece
+      that makes the idea easier to understand.
     </p>
   </header>
 
@@ -110,20 +110,20 @@ const currentFocus = [
     </div>
   </section>
 
-  <section class="section card" aria-labelledby="about-now-title">
-    <p class="section__label">Current direction</p>
-    <h2 id="about-now-title" class="section__title">
-      Making the portfolio more personal and more useful.
+  <section class="section card" aria-labelledby="about-next-title">
+    <p class="section__label">What I want to make more of</p>
+    <h2 id="about-next-title" class="section__title">
+      Things you can see, use, or play with.
     </h2>
     <div class="stack">
       <p class="section__description">
-        The current direction is to make the technical and visual sides of the
-        work easier to understand together. Project pages should show more than
-        a thumbnail: they should explain the idea, the contribution, and the
-        next step.
+        I want the next projects to feel less like isolated demos and more like
+        small finished moments: something visual enough to remember, simple
+        enough to try, and clear enough that another person can understand what
+        changed between the first idea and the final page.
       </p>
       <ul class="list">
-        {currentFocus.map((item) => <li>{item}</li>)}
+        {nextProjects.map((item) => <li>{item}</li>)}
       </ul>
     </div>
   </section>
