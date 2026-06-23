@@ -40,7 +40,7 @@ const [featuredItem, ...supportingItems] = items;
     <div class="hero-reel">
       {
         featuredItem && (
-          <div class="hero-reel__featured">
+          <section class="hero-reel__featured" aria-label="Featured preview">
             <HeroReelTile
               title={featuredItem.title}
               label={featuredItem.label}
@@ -50,13 +50,13 @@ const [featuredItem, ...supportingItems] = items;
               aspect={featuredItem.aspect ?? featuredAspect}
               loading="eager"
             />
-          </div>
+          </section>
         )
       }
 
       {
         supportingItems.length > 0 && (
-          <div class="hero-reel__supporting">
+          <section class="hero-reel__supporting" aria-label="More project previews">
             {supportingItems.map((item) => (
               <HeroReelTile
                 title={item.title}
@@ -67,7 +67,7 @@ const [featuredItem, ...supportingItems] = items;
                 loading="lazy"
               />
             ))}
-          </div>
+          </section>
         )
       }
     </div>
@@ -112,6 +112,7 @@ const [featuredItem, ...supportingItems] = items;
     position: relative;
     z-index: 1;
     display: grid;
+    grid-template-columns: minmax(0, 1fr);
     gap: clamp(0.7rem, 1.2vw, 0.95rem);
   }
 
@@ -124,12 +125,6 @@ const [featuredItem, ...supportingItems] = items;
   .hero-reel__supporting {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(0.7rem, 1.2vw, 0.95rem);
-  }
-
-  @media (max-width: 960px) {
-    .hero-reel__supporting {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
   }
 
   @media (max-width: 720px) {
