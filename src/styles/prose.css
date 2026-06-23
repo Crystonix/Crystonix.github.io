@@ -48,7 +48,15 @@
 }
 
 .card,
+.focus-item,
+.project-card,
+.hero-reel-stage,
+.hero-reel-tile,
+.media-frame--gallery {
+  box-shadow: none !important;
+}
+
+.card,
 .focus-item {
   background: rgba(255, 255, 255, 0.04);
-  box-shadow: unset;
 }
