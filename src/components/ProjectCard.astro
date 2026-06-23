@@ -1,9 +1,12 @@
 ---
+import MediaFrame from './MediaFrame.astro';
+
 interface MediaCover {
-  type: 'image' | 'video' | 'youtube';
+  type: 'image' | 'video';
   src: string;
   alt?: string;
   position?: string;
+  poster?: string;
 }
 
 interface Props {
@@ -21,12 +24,8 @@ const { title, description, href, tags = [], category, status, cover } = Astro.p
 
 <article class="project-card">
   {cover && (
-    <div class="project-card__cover" aria-hidden={cover.alt ? undefined : 'true'}>
-      {cover.type === 'video' ? (
-        <video src={cover.src} autoplay muted loop playsinline preload="metadata" style={{ objectPosition: cover.position ?? 'center' }}></video>
-      ) : (
-        <img src={cover.src} alt={cover.alt ?? ''} loading="lazy" style={{ objectPosition: cover.position ?? 'center' }} />
-      )}
+    <div class="project-card__cover">
+      <MediaFrame media={cover} variant="cover" loading="lazy" autoplay={cover.type === 'video'} controls={false} muted loop />
     </div>
   )}
 
@@ -37,7 +36,13 @@ const { title, description, href, tags = [], category, status, cover } = Astro.p
     </div>
   )}
 
-  <h3>{title}</h3>
+  <h3>
+    {href ? (
+      <a href={href} class="project-card__title-link">{title}</a>
+    ) : (
+      <span class="project-card__title-link">{title}</span>
+    )}
+  </h3>
   <p>{description}</p>
 
   {tags.length > 0 && (
@@ -46,5 +51,77 @@ const { title, description, href, tags = [], category, status, cover } = Astro.p
     </div>
   )}
 
-  {href && <a class="project-card__link" href={href}>View project →</a>}
+  {href && <a class="project-card__link" href={href} aria-label={`View ${title}`}>View project →</a>}
 </article>
+
+<style>
+  .project-card {
+    display: flex;
+    overflow: hidden;
+    min-height: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025));
+    box-shadow: var(--shadow-card);
+    padding: clamp(1.2rem, 3vw, 1.6rem);
+  }
+
+  .project-card__cover {
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    margin: calc(clamp(1.2rem, 3vw, 1.6rem) * -1) calc(clamp(1.2rem, 3vw, 1.6rem) * -1) 0;
+    border-bottom: 1px solid var(--color-border);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .project-card__topline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    color: var(--color-subtle);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .project-card__topline span + span::before {
+    content: '·';
+    margin-right: 0.5rem;
+    color: var(--color-border);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  .project-card__title-link {
+    color: var(--color-text);
+  }
+
+  .project-card__title-link:hover,
+  .project-card__title-link:focus-visible {
+    color: var(--color-accent);
+  }
+
+  .project-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .project-card__link {
+    margin-top: auto;
+    color: var(--color-accent);
+    font-weight: 800;
+  }
+</style>
