@@ -2,37 +2,60 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
-const mediaItemSchema = z.object({
-  type: z.enum(['image', 'video', 'youtube']),
+const projectCategorySchema = z.enum(['Web Projects', 'Game Systems', 'Visual Work']);
+
+const baseMediaSchema = z.object({
   src: z.string(),
   title: z.string().optional(),
   alt: z.string().optional(),
-  poster: z.string().optional(),
   position: z.string().optional(),
 });
 
-const coverSchema = mediaItemSchema.omit({ title: true, poster: true });
+const imageMediaSchema = baseMediaSchema.extend({
+  type: z.literal('image'),
+});
+
+const videoMediaSchema = baseMediaSchema.extend({
+  type: z.literal('video'),
+  poster: z.string().optional(),
+});
+
+const youtubeMediaSchema = z.object({
+  type: z.literal('youtube'),
+  src: z.string().url(),
+  title: z.string().optional(),
+});
+
+const visualPreviewSchema = z.union([imageMediaSchema, videoMediaSchema]);
+const projectMediaSchema = z.union([imageMediaSchema, videoMediaSchema, youtubeMediaSchema]);
+const projectHighlightSchema = z.union([
+  z.string(),
+  z.object({
+    title: z.string().optional(),
+    text: z.string(),
+  }),
+]);
 
 const projects = defineCollection({
   loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
-    category: z.enum(['Web Projects', 'Game Systems', 'Visual Work']),
+    category: projectCategorySchema,
     status: z.string(),
     featured: z.boolean().default(false),
     order: z.number(),
     tags: z.array(z.string()).default([]),
-    highlights: z.array(z.unknown()).default([]),
-    cover: coverSchema.optional(),
-    heroCover: coverSchema.optional(),
-    media: z.array(mediaItemSchema).default([]),
+    highlights: z.array(projectHighlightSchema).default([]),
+    cover: visualPreviewSchema.optional(),
+    heroCover: visualPreviewSchema.optional(),
+    media: z.array(projectMediaSchema).default([]),
     links: z
       .object({
         repo: z.string().url().optional(),
         demo: z.string().url().optional(),
       })
-      .optional(),
+      .default({}),
   }),
 });
 
