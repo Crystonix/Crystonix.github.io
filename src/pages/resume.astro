@@ -1,54 +1,97 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionHeading from '../components/SectionHeading.astro';
 
-const resumeSections = [
+const skillGroups = [
   {
-    title: 'Profile',
-    description:
-      'Replace this with a concise professional summary once the target role, skills, and strongest evidence are finalized.',
+    title: 'Web and content',
+    items: ['Astro', 'TypeScript', 'Directus', 'PostgreSQL', 'Redis'],
   },
   {
-    title: 'Technical skills',
-    description:
-      'Add only tools and technologies you can confidently discuss, maintain, and demonstrate through projects.',
+    title: 'Game and interactive',
+    items: ['Godot', 'GDScript', 'GDExtension', 'Procedural generation'],
   },
   {
-    title: 'Selected work',
-    description:
-      'Link each meaningful project to a repository, demo, or portfolio case study with architecture and outcome notes.',
+    title: 'Visual and 3D',
+    items: ['Three.js', 'WebGL', 'JavaScript', 'Particles', 'Game art'],
   },
+];
+
+const currentFocus = [
+  'Making project pages clearer and more personal.',
+  'Connecting web projects, game systems, and visual work in one portfolio.',
+  'Turning older work and current experiments into stronger case studies.',
 ];
 ---
 
 <BaseLayout
   title="Resume | Crystonix"
-  description="Resume page scaffold for the Crystonix portfolio."
+  description="Project-based resume page for the Crystonix portfolio."
 >
   <header class="page-header">
     <p class="eyebrow">Resume</p>
-    <h1 class="page-title">Structured for proof, not filler.</h1>
+    <h1 class="page-title">A project-backed summary.</h1>
     <p class="page-lead">
-      This page is ready for a resume-style profile that can link directly to
-      projects and technical evidence.
+      A concise view of the tools, systems, and visual work represented in this
+      portfolio.
     </p>
   </header>
 
-  <section class="section" aria-labelledby="resume-sections-title">
-    <SectionHeading
-      label="Sections"
-      title="Resume scaffold"
-      description="Keep this page factual. Add specific experience, stack, and project evidence when ready."
-    />
+  <section class="section split" aria-labelledby="resume-profile-title">
+    <div>
+      <p class="section__label">Profile</p>
+      <h2 id="resume-profile-title" class="section__title">
+        Building across web, games, and visual media.
+      </h2>
+    </div>
+    <div class="prose">
+      <p>
+        My work here sits between technical structure and visible results. Some
+        projects focus on web foundations and content workflows. Others explore
+        procedural game systems, browser graphics, or visual presentation.
+      </p>
+      <p>
+        This page keeps the summary tied to projects that are already part of
+        the portfolio.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="resume-skills-title">
+    <div class="section__header">
+      <p class="section__label">Skills</p>
+      <h2 id="resume-skills-title" class="section__title">
+        Tools and areas shown by the projects.
+      </h2>
+    </div>
     <div class="card-grid">
       {
-        resumeSections.map((section) => (
+        skillGroups.map((group) => (
           <article class="card">
-            <h3>{section.title}</h3>
-            <p>{section.description}</p>
+            <h3>{group.title}</h3>
+            <ul class="list">
+              {group.items.map((item) => <li>{item}</li>)}
+            </ul>
           </article>
         ))
       }
+    </div>
+  </section>
+
+  <section class="section split" aria-labelledby="resume-current-title">
+    <div>
+      <p class="section__label">Current focus</p>
+      <h2 id="resume-current-title" class="section__title">
+        Clearer case studies and stronger presentation.
+      </h2>
+    </div>
+    <div class="stack">
+      <ul class="list">
+        {currentFocus.map((item) => <li>{item}</li>)}
+      </ul>
+      <div class="actions" aria-label="Resume links">
+        <a class="button button--secondary" href="/projects/">Projects</a>
+        <a class="button button--secondary" href="/about/">About</a>
+      </div>
     </div>
   </section>
 </BaseLayout>
