@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { legalProfile } from '../../data/legal';
+---
+
+<BaseLayout title="Impressum | Crystonix" description="Anbieterkennzeichnung für das Crystonix Portfolio.">
+  <header class="page-header legal-header">
+    <p class="eyebrow">Impressum</p>
+    <h1 class="page-title">Anbieterkennzeichnung.</h1>
+    <p class="page-lead">Angaben zur verantwortlichen Person dieser Website.</p>
+  </header>
+
+  <section class="section legal-page" aria-labelledby="impressum-title">
+    <article class="card legal-card">
+      <p class="section__label">Verantwortlich</p>
+      <h2 id="impressum-title" class="section__title">{legalProfile.ownerName}</h2>
+      <address class="legal-address">
+        {legalProfile.address.map((line) => <span>{line}</span>)}
+      </address>
+      <p>E-Mail: <a href={`mailto:${legalProfile.email}`}>{legalProfile.email}</a></p>
+    </article>
+  </section>
+</BaseLayout>
+
+<style>
+  .legal-header .page-title {
+    max-width: 12ch;
+  }
+
+  .legal-page {
+    max-width: 760px;
+  }
+
+  .legal-card {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .legal-card p,
+  .legal-address {
+    margin: 0;
+    color: var(--color-muted);
+    font-style: normal;
+  }
+
+  .legal-address {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .legal-card a {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+</style>
