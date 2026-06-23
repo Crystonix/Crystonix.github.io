@@ -1,8 +1,8 @@
 ---
-title: Underwater Three.js Scene
-description: Browser-based 3D scene built with Three.js and Vite, featuring an animated underwater environment with particles, terrain textures, displacement, lighting, and camera controls.
-category: Graphics and creative tech
-status: Visual experiment
+title: Underwater Scene
+description: A browser-based 3D underwater scene with terrain, animated bubbles, camera movement, lighting, and atmospheric composition.
+category: Visual work
+status: Interactive scene
 featured: true
 order: 4
 tags:
@@ -11,23 +11,23 @@ tags:
   - Vite
   - JavaScript
   - Particles
-  - 3D graphics
+  - 3D scene
 links:
   repo: https://github.com/Crystonix/unterwasser
 highlights:
-  - Three.js scene composition with renderer, camera, lighting, terrain, and animation loop.
-  - Particle-style bubble system to give the scene motion and atmosphere.
-  - Texture and displacement mapping for the underwater terrain surface.
+  - Builds a small atmospheric scene with terrain, lighting, and camera setup.
+  - Uses animated bubbles to add motion and depth to the environment.
+  - Combines texture and displacement work for the underwater ground plane.
 ---
 
-## Project context
+## Overview
 
-Underwater Three.js Scene is a browser-based graphics project focused on building atmosphere and motion in a small interactive scene. It combines scene setup, terrain, camera behavior, texture work, and animated environmental details.
+Underwater Scene is an interactive browser-based visual piece built with Three.js. The scene focuses on atmosphere: a textured underwater ground plane, camera setup, lighting, and animated bubbles that give the environment movement.
 
-## Technical focus
+## My focus
 
-The project uses Three.js with Vite and organizes the scene into separate pieces for camera setup, terrain, renderer, lighting, and bubbles. The result is a useful graphics case study because the technical work is visible: the scene has geometry, movement, texture, and composition rather than being a static landing page.
+The work centers on scene composition and visual behavior in the browser. Instead of a static page, the project uses geometry, animation, particles, and camera controls to create a more immersive visual result.
 
-## Why it belongs here
+## Why it matters
 
-This project broadens the portfolio beyond application and backend work. It shows creative coding, WebGL fundamentals, and the ability to build visual systems in the browser.
+This piece belongs in the visual side of the portfolio. It shows creative coding, browser graphics, and the ability to build a visual scene from separate parts rather than relying on a prebuilt template.
