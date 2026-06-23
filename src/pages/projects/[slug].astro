@@ -1,0 +1,77 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { title, description, category, status, tags, highlights, links } = project.data;
+---
+
+<BaseLayout title={`${title} | Crystonix`} description={description}>
+  <article class="project-detail">
+    <header class="page-header project-detail__header">
+      <p class="eyebrow">{category} · {status}</p>
+      <h1 class="page-title">{title}</h1>
+      <p class="page-lead">{description}</p>
+
+      {(links?.repo || links?.demo) && (
+        <div class="actions">
+          {links?.repo && (
+            <a class="button button--primary" href={links.repo} rel="noreferrer">View repository</a>
+          )}
+          {links?.demo && (
+            <a class="button button--secondary" href={links.demo} rel="noreferrer">Open demo</a>
+          )}
+        </div>
+      )}
+    </header>
+
+    <div class="project-detail__layout">
+      <div class="project-detail__content prose">
+        <Content />
+      </div>
+
+      <aside class="project-detail__aside card" aria-label="Project summary">
+        <h2>Project summary</h2>
+
+        <div class="project-detail__meta-list">
+          <div>
+            <span>Category</span>
+            <strong>{category}</strong>
+          </div>
+          <div>
+            <span>Status</span>
+            <strong>{status}</strong>
+          </div>
+        </div>
+
+        {tags.length > 0 && (
+          <div>
+            <h3>Stack / focus</h3>
+            <div class="project-card__meta" aria-label="Project tags">
+              {tags.map((tag) => <span class="badge">{tag}</span>)}
+            </div>
+          </div>
+        )}
+
+        {highlights.length > 0 && (
+          <div>
+            <h3>Highlights</h3>
+            <ul class="list">
+              {highlights.map((highlight) => <li>{highlight}</li>)}
+            </ul>
+          </div>
+        )}
+      </aside>
+    </div>
+  </article>
+</BaseLayout>
